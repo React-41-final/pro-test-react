@@ -11,10 +11,10 @@ const token = createReducer(null, {});
 
 const error = createReducer(null, {});
 
-const authReduser = combineReducers({
+const authReducer = combineReducers({
   user,
   token,
   error,
 });
 
-export { authReduser };
+export { authReducer };

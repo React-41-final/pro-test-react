@@ -1,4 +1,4 @@
-import { combineReducers, createReducer } from "@reduxjs/toolkit";
+import { combineReducers, createReducer } from '@reduxjs/toolkit';
 
 const initialUserState = {};
 
@@ -6,9 +6,9 @@ const results = createReducer({ ...initialUserState }, {});
 
 const error = createReducer(null, {});
 
-const resultsReduser = combineReducers({
+const resultsReducer = combineReducers({
   results,
   error,
 });
 
-export { resultsReduser };
+export { resultsReducer };
