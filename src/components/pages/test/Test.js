@@ -1,7 +1,13 @@
-import React from "react";
+import React from 'react';
+import Questions from '../../questions/Questions';
 
 const Test = () => {
-  return <h2>Test</h2>;
+  return (
+    <div>
+      <h2>Test</h2>
+      <Questions />
+    </div>
+  );
 };
 
 export default Test;

@@ -1,7 +1,13 @@
-import React from "react";
+import React from 'react';
+import ContactsCard from '../../contactsCard/ContactsCard';
 
 const ContactsPage = () => {
-  return <h2>Contacts</h2>;
+  return (
+    <div>
+      <h2>Contacts</h2>
+      <ContactsCard />
+    </div>
+  );
 };
 
 export default ContactsPage;

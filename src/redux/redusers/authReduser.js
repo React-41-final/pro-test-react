@@ -1,4 +1,4 @@
-import { combineReducers, createReducer } from "@reduxjs/toolkit";
+import { combineReducers, createReducer } from '@reduxjs/toolkit';
 
 const initialUserState = {
   name: null,
@@ -7,10 +7,13 @@ const initialUserState = {
 
 const user = createReducer({ ...initialUserState }, {});
 
+const token = createReducer(null, {});
+
 const error = createReducer(null, {});
 
 const authReduser = combineReducers({
   user,
+  token,
   error,
 });
 

@@ -1,7 +1,13 @@
-import React from "react";
+import React from 'react';
+import Diagram from '../../diagram/Diagram';
 
 const Results = () => {
-  return <h2>Results</h2>;
+  return (
+    <div>
+      <h2>Results</h2>
+      <Diagram />
+    </div>
+  );
 };
 
 export default Results;
