@@ -4,7 +4,7 @@ const routers = {
   contactsPage: '/contacts',
   test: '/test',
   results: '/results',
-  usefulInfo: 'useful-info',
+  usefullInfo: '/usefull-info',
 };
 
 export default routers;
