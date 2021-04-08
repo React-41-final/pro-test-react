@@ -6,6 +6,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.wrapper {
   border-bottom: 1px solid #e2e3e5;
 }
 
@@ -39,5 +42,11 @@
   }
   .burger {
     display: none;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
   }
 }

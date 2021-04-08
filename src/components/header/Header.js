@@ -17,25 +17,27 @@ class Header extends Component {
     const { isAuthorized } = this.props;
     return (
       <>
-        <div className={styles.container}>
-          <Logo />
-          <div className={styles.nav}>
-            <Navigation props={isAuthorized} />
+        <div className={styles.wrapper}>
+          <div className={styles.container}>
+            <Logo />
+            <div className={styles.nav}>
+              <Navigation props={isAuthorized} />
+            </div>
+            {isAuthorized ? <UserInfo /> : false}
+            {isModalOn ? (
+              <div className={styles.burger}>
+                <svg className={styles.burgerOn} onClick={this.handleModal}>
+                  <use href={sprite + "#close"} />
+                </svg>
+              </div>
+            ) : (
+              <div className={styles.burger}>
+                <svg className={styles.burgerOn} onClick={this.handleModal}>
+                  <use href={sprite + "#burger"} />
+                </svg>
+              </div>
+            )}
           </div>
-          {isAuthorized ? <UserInfo /> : false}
-          {isModalOn ? (
-            <div className={styles.burger}>
-              <svg className={styles.burgerOn} onClick={this.handleModal}>
-                <use href={sprite + "#close"} />
-              </svg>
-            </div>
-          ) : (
-            <div className={styles.burger}>
-              <svg className={styles.burgerOn} onClick={this.handleModal}>
-                <use href={sprite + "#burger"} />
-              </svg>
-            </div>
-          )}
         </div>
         {isModalOn ? <Navigation isAuthorized={isAuthorized} /> : false}
       </>
