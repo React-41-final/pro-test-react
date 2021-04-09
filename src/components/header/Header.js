@@ -4,7 +4,7 @@ import Logo from "../logo/Logo";
 import Navigation from "../navigation/Navigation";
 import UserInfo from "../userInfo/UserInfo";
 import sprite from "../../sprites/sprite.svg";
-import styles from "./Header.module.css";
+import styles from "./Header.module.scss";
 
 class Header extends Component {
   state = {
