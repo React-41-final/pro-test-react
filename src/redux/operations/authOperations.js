@@ -1,42 +1,58 @@
-import axios from "axios";
-import authActions from "../actions/authAction";
+import {
+  registerRequest,
+  registerSuccess,
+  registerError,
+  loginRequest,
+  loginSuccess,
+  loginError,
+  refreshRequest,
+  refreshSuccess,
+  refreshError,
+} from "../actions/authAction";
+import {
+  postRegister,
+  postSignInUser,
+  postRefreshUser,
+} from "../../servises/reqToApi";
 
-axios.defaults.baseURL = "https://protest-backend.goit.global";
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = "";
-  },
+const register = (credentials) => async (dispatch) => {
+  dispatch(registerRequest());
+  try {
+    const user = await postRegister(credentials);
+    dispatch(registerSuccess(user));
+  } catch (error) {
+    dispatch(registerError(error));
+  }
 };
 
-const register = (credentials) => (dispatch) => {
-  dispatch(authActions.registerRequest());
-
-  axios
-    .post("/auth/register", credentials)
-    .then((response) => {
-      // console.log("response ", response.data);
-      // console.log("credentials ", credentials);
-      // token.set(response.data.token);
-      dispatch(authActions.registerSuccess(response.data));
-    })
-    .catch((error) => dispatch(authActions.registerError(error)));
+const logIn = (credentials) => async (dispatch) => {
+  dispatch(loginRequest());
+  try {
+    const user = await postSignInUser(credentials);
+    dispatch(loginSuccess(user));
+  } catch (error) {
+    dispatch(loginError(error));
+  }
 };
 
-const logIn = (credentials) => (dispatch) => {
-  dispatch(authActions.loginRequest());
+const refreshToken = (credentials) => async (dispatch, getState) => {
+  const {
+    auth: { token: persistedToken },
+  } = getState();
 
-  axios
-    .post("/auth/login", credentials)
-    .then((response) => {
-      console.log("response ", response);
-      token.set(response.data.accessToken);
-      dispatch(authActions.loginSuccess(response.data));
-    })
-    .catch((error) => dispatch(authActions.loginError(error)));
+  const {
+    auth: { user: refreshUser },
+  } = getState();
+
+  if (persistedToken) {
+    dispatch(refreshRequest());
+    try {
+      const user = await postRefreshUser(persistedToken, refreshUser.id);
+      dispatch(refreshSuccess(user));
+    } catch (error) {
+      dispatch(refreshError(error));
+    }
+  }
 };
 
-export default { register, logIn };
+export { register, logIn, refreshToken };

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import authOperations from "../../redux/operations/authOperations";
+import { register, logIn } from "../../redux/operations/authOperations";
 import s from "./AuthForm.module.css";
 
 class AuthForm extends Component {
@@ -23,24 +23,28 @@ class AuthForm extends Component {
 
   onHandleLogin = (e) => {
     e.preventDefault();
-    if (!this.state.email || !this.state.password) {
-      alert("Empty space!");
-      return;
+    if (this.isValidateForm()) {
+      this.props.onLogin({ ...this.state });
+      this.setState({ email: "", password: "" });
     }
-    this.props.onLogin({ ...this.state });
+
     // console.log("state ", this.state);
-    this.setState({ email: "", password: "" });
   };
 
   onHandleRegister = (e) => {
     e.preventDefault();
-    if (!this.state.email || !this.state.password) {
-      alert("Empty space!");
-      return;
+    if (this.isValidateForm()) {
+      this.props.onRegister({ ...this.state });
+      this.setState({ email: "", password: "" });
     }
-    this.props.onRegister({ ...this.state });
     // console.log("state ", this.state);
-    this.setState({ email: "", password: "" });
+  };
+
+  isValidateForm = () => {
+    if (!this.state.email || !this.state.password) {
+      return false;
+    }
+    return true;
   };
 
   render() {
@@ -99,8 +103,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  onRegister: authOperations.register,
-  onLogin: authOperations.logIn,
+  onRegister: register,
+  onLogin: logIn,
 };
 
 // export default connect(AuthForm);

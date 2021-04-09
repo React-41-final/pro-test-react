@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import routes from "../../routers/routers";
-import styles from "./Footer.module.css";
+import styles from "./Footer.module.scss";
 import sprite from "../../sprites/sprite.svg";
 
 const Footer = () => {
