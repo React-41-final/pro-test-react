@@ -2,8 +2,7 @@ import { lazy, Suspense } from "react";
 import { Route, Switch } from "react-router";
 import Layout from "../layout/Layout";
 import routers from "../../routers/routers";
-import "./App.css";
-
+import "./App.scss";
 
 function App() {
   return (

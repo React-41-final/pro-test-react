@@ -5,7 +5,7 @@ import routes from "../../../routers/routers";
 import Diagram from "../../diagram/Diagram";
 import catImages from "../../../img/catResultPage.png";
 
-import styles from "./Results.module.css";
+import styles from "./Results.module.scss";
 
 const Results = () => {
   return (

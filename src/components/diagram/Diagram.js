@@ -8,7 +8,7 @@
 
 import React from "react";
 import { Chart } from "react-google-charts";
-import styles from "./Diagram.module.css";
+import styles from "./Diagram.module.scss";
 
 // const indexChart = window.innerWidth >= 768 ? 160 : 0;
 
