@@ -14,11 +14,14 @@
 
 .burger {
   position: relative;
+  cursor: pointer;
 }
+
 .burgerOn {
   width: 15px;
   height: 10px;
 }
+
 .burger::before {
   display: block;
   content: "";
@@ -31,6 +34,34 @@
 }
 .nav {
   display: none;
+}
+// TRANSITION
+.appear {
+  transform: translateY(-200%);
+  opacity: 0;
+}
+.appearActive {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 250ms linear;
+}
+.enter {
+  transform: translateY(-200%);
+  opacity: 0;
+}
+.enterActive {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 250ms linear;
+}
+.exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+.exitActive {
+  transform: translateY(-200%);
+  opacity: 0;
+  transition: all 250ms linear;
 }
 
 @media screen and (min-width: 768px) {
