@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const ContactsCard = () => {
   return <h3>ContactsCard</h3>;
