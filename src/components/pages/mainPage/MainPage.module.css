@@ -60,17 +60,34 @@
   background-color: #02172a;
   padding: 60px 51px 41px 52px;
   margin-bottom: 20px;
+  transition: 0.25s;
 }
 
 .link-box__theory {
   background-color: #ff6b01;
   padding: 59px 88px 42px 87px;
+  transition: 0.25s;
+}
+
+.link-box__technical:hover {
+  opacity: 0.9;
+  box-shadow: 2px 3px 10px 2px;
+  background-color: #ff6b01;
+  transition: 0.25s;
+}
+
+.link-box__theory:hover {
+  opacity: 0.9;
+  box-shadow: 2px 3px 10px 2px;
+  background-color: #02172a;
+  transition: 0.25s;
 }
 
 .link-box__technical,
 .link-box__theory {
   box-sizing: border-box;
   text-align: center;
+  text-decoration: none;
 }
 
 .link-box__link,
@@ -85,7 +102,6 @@
 .link-box__text {
   font-family: "Montserrat-800", sans-serif;
   font-size: 24px;
-  text-decoration: none;
   color: #ffffff;
   line-height: 29px;
   letter-spacing: 0.02em;
@@ -106,6 +122,7 @@
   .quote {
     font-size: 22px;
     line-height: 30px;
+    margin-bottom: 10px;
   }
 
   .line {
@@ -136,7 +153,7 @@
   }
 
   .link-box__link {
-    margin-top: 32px;
+    margin-top: 12px;
   }
 
   .link-box__technical .link-box__text {
@@ -150,12 +167,12 @@
   }
 
   .link-box__technical {
-    padding: 47px 12px 34px 12px;
+    padding: 62px 12px 39px 12px;
     margin-bottom: 30px;
   }
 
   .link-box__theory {
-    padding: 51px 88px 34px 87px;
+    padding: 64px 88px 41px 87px;
   }
 }
 
@@ -186,18 +203,14 @@
     justify-content: space-between;
   }
 
-  .link-box__link {
-    margin-top: 32px;
-  }
-
   .link-box__technical {
-    padding: 60px 14px 46px 12px;
+    padding: 61px 14px 31px 12px;
     margin-bottom: 0;
     width: 400px;
   }
 
   .link-box__theory {
-    padding: 61px 88px 34px 87px;
+    padding: 63px 88px 42px 89px;
     margin-bottom: 0;
     width: 400px;
   }
