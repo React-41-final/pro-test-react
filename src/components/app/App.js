@@ -1,10 +1,17 @@
-import { lazy, Suspense } from 'react';
-import { Route, Switch } from 'react-router';
-import Layout from '../layout/Layout';
-import routers from '../../routers/routers';
-import './App.css';
+import { lazy, Suspense, useEffect } from "react";
+import { Route, Switch } from "react-router";
+import Layout from "../layout/Layout";
+import { refreshToken } from "../../redux/operations/authOperations";
+import routers from "../../routers/routers";
+import "./App.scss";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshToken());
+  }, []);
+
   return (
     <div>
       <Layout>
