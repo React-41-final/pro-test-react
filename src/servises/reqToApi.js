@@ -32,6 +32,18 @@ const postSignInUser = async (user) => {
   }
 };
 
+const getGoogleLogin = async () => {
+  try {
+    const data = await axios.get("/auth/google");
+    console.log("reqTo ", data);
+    // await token.set(userData.data.accessToken);
+    return await data;
+  } catch (error) {
+    console.log("error", error);
+    throw error;
+  }
+};
+
 const postLogoutUser = async () => {
   try {
     await axios.post("/auth/logout");
@@ -107,6 +119,7 @@ const getUser = async () => {
 export {
   postRegister,
   postSignInUser,
+  getGoogleLogin,
   postLogoutUser,
   postRefreshUser,
   getTech,

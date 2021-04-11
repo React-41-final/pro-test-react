@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import AuthForm from "../../authForm/AuthForm";
-import s from "./AuthPage.module.css";
+import s from "./AuthPage.module.scss";
 
 class AuthPage extends Component {
   componentDidMount() {
@@ -37,7 +37,7 @@ class AuthPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.token,
+  isAuthenticated: state.auth.user.email,
 });
 
 export default connect(mapStateToProps)(AuthPage);

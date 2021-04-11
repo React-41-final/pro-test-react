@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import Google from "./Google";
 import { connect } from "react-redux";
 import { register, logIn } from "../../redux/operations/authOperations";
-import s from "./AuthForm.module.css";
+import s from "./AuthForm.module.scss";
 
 class AuthForm extends Component {
   state = {
@@ -14,37 +15,16 @@ class AuthForm extends Component {
     this.setState({ [name]: value });
   };
 
-  // onHandleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // this.props.onRegister({ ...this.state });
-  //   // this.props.onLogin({ ...this.state });
-  //   // this.setState({ email: "", password: "" });
-  // };
-
-  onHandleLogin = (e) => {
+  onHandleSubmit = (e) => {
     e.preventDefault();
-    if (this.isValidateForm()) {
+    const target = e.nativeEvent.submitter.dataset.action;
+
+    if (target === "login") {
       this.props.onLogin({ ...this.state });
-      this.setState({ email: "", password: "" });
-    }
-
-    // console.log("state ", this.state);
-  };
-
-  onHandleRegister = (e) => {
-    e.preventDefault();
-    if (this.isValidateForm()) {
+    } else {
       this.props.onRegister({ ...this.state });
-      this.setState({ email: "", password: "" });
     }
-    // console.log("state ", this.state);
-  };
-
-  isValidateForm = () => {
-    if (!this.state.email || !this.state.password) {
-      return false;
-    }
-    return true;
+    this.setState({ email: "", password: "" });
   };
 
   render() {
@@ -52,7 +32,8 @@ class AuthForm extends Component {
     return (
       <div className={s.container}>
         <p className={s.desc}>You can use your Google Account to authorize:</p>
-        <button className={s.googleButton}>Google</button>
+        {/* <button className={s.googleButton}>Google</button> */}
+        <Google />
         <p className={s.desc}>
           Or login to our app using e-mail {this.props.email} and password:
         </p>
@@ -77,18 +58,10 @@ class AuthForm extends Component {
             onChange={this.onHandleChange}
           />
           <div className={s.buttonContainer}>
-            <button
-              type="submit"
-              className={s.button}
-              onClick={this.onHandleLogin}
-            >
+            <button type="submit" className={s.button} data-action="login">
               Sign in
             </button>
-            <button
-              type="submit"
-              className={s.button}
-              onClick={this.onHandleRegister}
-            >
+            <button type="submit" className={s.button} data-action="signup">
               Sign up
             </button>
           </div>
@@ -107,5 +80,4 @@ const mapDispatchToProps = {
   onLogin: logIn,
 };
 
-// export default connect(AuthForm);
 export default connect(mapStateToProps, mapDispatchToProps)(AuthForm);
