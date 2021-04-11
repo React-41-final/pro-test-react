@@ -15,14 +15,15 @@ class AuthForm extends Component {
     this.setState({ [name]: value });
   };
 
-  onHandleSubmit = (e) => {
+  onHandleSubmit = async (e) => {
     e.preventDefault();
     const target = e.nativeEvent.submitter.dataset.action;
 
     if (target === "login") {
-      this.props.onLogin({ ...this.state });
+      await this.props.onLogin({ ...this.state });
     } else {
-      this.props.onRegister({ ...this.state });
+      await this.props.onRegister({ ...this.state });
+      await this.props.onLogin({ ...this.state });
     }
     this.setState({ email: "", password: "" });
   };
@@ -34,9 +35,7 @@ class AuthForm extends Component {
         <p className={s.desc}>You can use your Google Account to authorize:</p>
         {/* <button className={s.googleButton}>Google</button> */}
         <Google />
-        <p className={s.desc}>
-          Or login to our app using e-mail {this.props.email} and password:
-        </p>
+        <p className={s.desc}>Or login to our app using e-mail and password:</p>
 
         <form className={s.form} onSubmit={this.onHandleSubmit}>
           <input
