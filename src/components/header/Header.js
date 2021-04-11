@@ -36,7 +36,7 @@ class Header extends Component {
                   classNames={styles}
                   unmountOnExit
                 >
-                  <Navigation props={isAuthorized} />
+                  <Navigation isAuthorized={isAuthorized} />
                 </CSSTransition>
               </div>
               {isAuthorized ? <UserInfo /> : false}
