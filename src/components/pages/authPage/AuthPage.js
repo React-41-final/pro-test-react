@@ -6,13 +6,13 @@ import s from "./AuthPage.module.scss";
 class AuthPage extends Component {
   componentDidMount() {
     if (this.props.isAuthenticated) {
-      this.props.history.replace("/home");
+      this.props.history.replace("/");
     }
   }
 
   componentDidUpdate() {
     if (this.props.isAuthenticated) {
-      this.props.history.replace("/home");
+      this.props.history.replace("/");
     }
   }
 
