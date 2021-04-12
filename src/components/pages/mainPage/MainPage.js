@@ -20,26 +20,24 @@ const MainPage = () => {
         </div>
       </section>
       <section className={styles["link-box"]}>
-        <div className={styles["link-box__technical"]}>
-          <Link className={styles["link-box__text"]} to="/test">
+        <Link className={styles["link-box__technical"]} to="/test">
+          <span className={styles["link-box__text"]}>
             QA technical training
-          </Link>
-          <Link className={styles["link-box__link"]} to="/test">
+          </span>
+          <span className={styles["link-box__link"]}>
             <svg className={styles["link-box__svg"]}>
               <use href={sprite + "#arrow"}></use>
             </svg>
-          </Link>
-        </div>
-        <div className={styles["link-box__theory"]}>
-          <Link className={styles["link-box__text"]} to="/test">
-            Testing theory
-          </Link>
-          <Link className={styles["link-box__link"]} to="/test">
+          </span>
+        </Link>
+        <Link className={styles["link-box__theory"]} to="/test">
+          <span className={styles["link-box__text"]}>Testing theory</span>
+          <span className={styles["link-box__link"]}>
             <svg className={styles["link-box__svg"]}>
               <use href={sprite + "#arrow"}></use>
             </svg>
-          </Link>
-        </div>
+          </span>
+        </Link>
       </section>
     </div>
   );
