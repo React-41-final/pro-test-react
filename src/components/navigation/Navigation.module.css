@@ -1,7 +1,11 @@
+.mainNav {
+  display: flex;
+}
 .mainNav ul {
   margin: 0;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   width: 374px;
   list-style: none;
 }
@@ -28,6 +32,14 @@
 }
 .mainNav ul li:not(:last-child) {
   margin-right: 85px;
+}
+.headerBtn {
+  border: none;
+  padding: 20px;
+  background-color: inherit;
+}
+.logoutLogo {
+  height: 14px;
 }
 
 @media screen and (max-width: 767px) {
