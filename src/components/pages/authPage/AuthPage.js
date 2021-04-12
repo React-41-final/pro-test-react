@@ -37,7 +37,7 @@ class AuthPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.user.email,
+  isAuthenticated: state.auth.token,
 });
 
 export default connect(mapStateToProps)(AuthPage);
