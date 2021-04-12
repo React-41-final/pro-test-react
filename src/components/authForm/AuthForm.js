@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Google from "./Google";
 import { connect } from "react-redux";
 import {
   register,
@@ -8,17 +7,13 @@ import {
   getUserGoogle,
 } from "../../redux/operations/authOperations";
 import s from "./AuthForm.module.scss";
-import axios from "axios";
+// import { getGoogleLogin } from "../../servises/reqToApi";
 
 class AuthForm extends Component {
   state = {
     email: "",
     password: "",
   };
-
-  componentDidMount() {
-    this.set();
-  }
 
   onHandleChange = (e) => {
     const { name, value } = e.target;
@@ -38,11 +33,10 @@ class AuthForm extends Component {
     this.setState({ email: "", password: "" });
   };
 
-  onHandleGoogle = () => {
-    console.log("google");
-
-    this.props.onGoogleLogin();
-    // this.props.onGetUserGoogle();
+  onHandleSigIn = async () => {
+    window.location.replace("https://protest-backend.goit.global/auth/google");
+    console.log(this.props);
+    // console.log("getGoogleLogin();: ", getGoogleLogin());
   };
 
   render() {
@@ -50,10 +44,11 @@ class AuthForm extends Component {
     return (
       <div className={s.container}>
         <p className={s.desc}>You can use your Google Account to authorize:</p>
-        <button className={s.googleButton} onClick={this.onHandleGoogle}>
+
+        <button onClick={this.onHandleSigIn} className={s.googleButton}>
           Google
         </button>
-        {/* <Google /> */}
+        <a href="https://protest-backend.goit.global/auth/google">Google</a>
         <p className={s.desc}>Or login to our app using e-mail and password:</p>
 
         <form className={s.form} onSubmit={this.onHandleSubmit}>

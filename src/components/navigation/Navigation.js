@@ -2,11 +2,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Navigation.module.css";
 import routes from "../../routers/routers";
+import UserInfo from "../userInfo/UserInfo";
+// import postLogoutUser from "../../servises/reqToApi";
 
-const Navigation = ({ isAuthorized }) => (
+const Navigation = ({ isAuthorized = true }) => (
   <nav className={styles.mainNav}>
     <ul>
-      {isAuthorized && (
+      {true && (
         <li>
           <NavLink
             to={routes.mainPage}
@@ -18,10 +20,10 @@ const Navigation = ({ isAuthorized }) => (
           </NavLink>
         </li>
       )}
-      {isAuthorized && (
+      {true && (
         <li>
           <NavLink
-            to={routes.test}
+            to={routes.usefulInfo}
             exact
             className={styles.link}
             activeClassName={styles.activeLink}
@@ -40,7 +42,19 @@ const Navigation = ({ isAuthorized }) => (
           Contacts
         </NavLink>
       </li>
+      <li>
+        <UserInfo />
+      </li>
     </ul>
+    <div>
+      <button
+        type="click"
+        className={styles.headerBtn}
+        // onClick={postLogoutUser}
+      >
+        logout
+      </button>
+    </div>
   </nav>
 );
 

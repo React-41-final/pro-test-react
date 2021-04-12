@@ -4,17 +4,17 @@ import AuthForm from "../../authForm/AuthForm";
 import s from "./AuthPage.module.scss";
 
 class AuthPage extends Component {
-  // componentDidMount() {
-  //   if (this.props.isAuthenticated) {
-  //     this.props.history.replace("/");
-  //   }
-  // }
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.history.replace("/");
+    }
+  }
 
-  // componentDidUpdate() {
-  //   if (this.props.isAuthenticated) {
-  //     this.props.history.replace("/");
-  //   }
-  // }
+  componentDidUpdate() {
+    if (this.props.isAuthenticated) {
+      this.props.history.replace("/");
+    }
+  }
 
   render() {
     return (
