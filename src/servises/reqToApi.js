@@ -23,7 +23,7 @@ const postRegister = async (user) => {
 
 const postSignInUser = async (user) => {
   try {
-    const userData = await axios.post("/auth/login", user);
+    const userData = await axios.post("/auth/google", user);
     await token.set(userData.data.accessToken);
     return await userData.data;
   } catch (error) {
