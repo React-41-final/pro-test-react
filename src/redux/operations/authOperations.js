@@ -5,9 +5,6 @@ import {
   loginRequest,
   loginSuccess,
   loginError,
-  googleLoginRequest,
-  googleLoginSuccess,
-  googleLoginError,
   getUserRequest,
   getUserSuccess,
   getUserError,
@@ -18,7 +15,6 @@ import {
 import {
   postRegister,
   postSignInUser,
-  getGoogleLogin,
   postRefreshUser,
   getUser,
 } from "../../servises/reqToApi";
@@ -43,23 +39,15 @@ const logIn = (credentials) => async (dispatch) => {
   }
 };
 
-const googleLogin = () => async (dispatch) => {
-  dispatch(googleLoginRequest());
-  try {
-    const user = await getGoogleLogin();
-    console.log("user ", user);
-    dispatch(googleLoginSuccess(user));
-  } catch (error) {
-    dispatch(googleLoginError(error));
-  }
-};
-
-const getUserGoogle = () => async (dispatch) => {
+const getUserGoogle = (tokenData) => async (dispatch) => {
   dispatch(getUserRequest());
   try {
-    const user = await getUser();
-    console.log("user ", user);
-    dispatch(getUserSuccess(user));
+    let data = {};
+    const user = await getUser(tokenData.accessToken);
+    data = { userData: user, ...tokenData };
+    // data.userData = user;
+    // data.tokens = tokenData;
+    dispatch(getUserSuccess(data));
   } catch (error) {
     dispatch(getUserError(error));
   }
@@ -85,4 +73,4 @@ const refreshToken = (credentials) => async (dispatch, getState) => {
   }
 };
 
-export { register, logIn, googleLogin, getUserGoogle, refreshToken };
+export { register, logIn, getUserGoogle, refreshToken };

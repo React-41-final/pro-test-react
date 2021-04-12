@@ -1,19 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  register,
-  logIn,
-  googleLogin,
-  getUserGoogle,
-} from "../../redux/operations/authOperations";
+import { register, logIn } from "../../redux/operations/authOperations";
 import s from "./AuthForm.module.scss";
-// import { getGoogleLogin } from "../../servises/reqToApi";
 
 class AuthForm extends Component {
   state = {
     email: "",
     password: "",
   };
+
+  componentWillUnmount() {
+    this.setState({ email: "", password: "" });
+  }
 
   onHandleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +28,6 @@ class AuthForm extends Component {
       await this.props.onRegister({ ...this.state });
       await this.props.onLogin({ ...this.state });
     }
-    this.setState({ email: "", password: "" });
   };
 
   onHandleSigIn = async () => {
@@ -48,7 +45,7 @@ class AuthForm extends Component {
         <button onClick={this.onHandleSigIn} className={s.googleButton}>
           Google
         </button>
-        <a href="https://protest-backend.goit.global/auth/google">Google</a>
+        {/* <a href="https://protest-backend.goit.global/auth/google">Google</a> */}
         <p className={s.desc}>Or login to our app using e-mail and password:</p>
 
         <form className={s.form} onSubmit={this.onHandleSubmit}>
@@ -87,8 +84,6 @@ class AuthForm extends Component {
 const mapDispatchToProps = {
   onRegister: register,
   onLogin: logIn,
-  onGoogleLogin: googleLogin,
-  onGetUserGoogle: getUserGoogle,
 };
 
 export default connect(null, mapDispatchToProps)(AuthForm);

@@ -6,6 +6,9 @@ import {
   loginRequest,
   loginSuccess,
   loginError,
+  getUserRequest,
+  getUserSuccess,
+  getUserError,
 } from "../actions/authAction";
 
 const initialUserState = {
@@ -18,6 +21,7 @@ const user = createReducer(
   {
     [registerSuccess]: (_, { payload }) => payload,
     [loginSuccess]: (_, { payload }) => payload.userData,
+    [getUserSuccess]: (_, { payload }) => payload.userData,
   }
 );
 
@@ -28,18 +32,20 @@ const loading = createReducer(false, {
   [loginRequest]: () => true,
   [loginSuccess]: () => false,
   [loginError]: () => false,
-  // [removeContactRequest]: () => true,
-  // [removeContactSuccess]: () => false,
-  // [removeContactError]: () => false,
+  [getUserRequest]: () => true,
+  [getUserSuccess]: () => false,
+  [getUserError]: () => false,
 });
 
 const token = createReducer(null, {
   [loginSuccess]: (_, { payload }) => payload.accessToken,
+  [getUserSuccess]: (_, { payload }) => payload.accessToken,
 });
 
 const error = createReducer(null, {
   [registerError]: (_, { payload }) => payload,
   [loginError]: (_, { payload }) => payload,
+  [getUserError]: (_, { payload }) => payload,
 });
 
 const authReducer = combineReducers({
