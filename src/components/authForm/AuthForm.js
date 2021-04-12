@@ -1,14 +1,24 @@
 import React, { Component } from "react";
 import Google from "./Google";
 import { connect } from "react-redux";
-import { register, logIn } from "../../redux/operations/authOperations";
+import {
+  register,
+  logIn,
+  googleLogin,
+  getUserGoogle,
+} from "../../redux/operations/authOperations";
 import s from "./AuthForm.module.scss";
+import axios from "axios";
 
 class AuthForm extends Component {
   state = {
     email: "",
     password: "",
   };
+
+  componentDidMount() {
+    this.set();
+  }
 
   onHandleChange = (e) => {
     const { name, value } = e.target;
@@ -28,13 +38,22 @@ class AuthForm extends Component {
     this.setState({ email: "", password: "" });
   };
 
+  onHandleGoogle = () => {
+    console.log("google");
+
+    this.props.onGoogleLogin();
+    // this.props.onGetUserGoogle();
+  };
+
   render() {
     const { email, password } = this.state;
     return (
       <div className={s.container}>
         <p className={s.desc}>You can use your Google Account to authorize:</p>
-        {/* <button className={s.googleButton}>Google</button> */}
-        <Google />
+        <button className={s.googleButton} onClick={this.onHandleGoogle}>
+          Google
+        </button>
+        {/* <Google /> */}
         <p className={s.desc}>Or login to our app using e-mail and password:</p>
 
         <form className={s.form} onSubmit={this.onHandleSubmit}>
@@ -70,13 +89,11 @@ class AuthForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  email: state.auth.user.email,
-});
-
 const mapDispatchToProps = {
   onRegister: register,
   onLogin: logIn,
+  onGoogleLogin: googleLogin,
+  onGetUserGoogle: getUserGoogle,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthForm);
+export default connect(null, mapDispatchToProps)(AuthForm);

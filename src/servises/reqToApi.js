@@ -34,10 +34,8 @@ const postSignInUser = async (user) => {
 
 const getGoogleLogin = async () => {
   try {
-    const data = await axios.get("/auth/google");
-    console.log("reqTo ", data);
-    // await token.set(userData.data.accessToken);
-    return await data;
+    await axios.get("/auth/google");
+    return;
   } catch (error) {
     console.log("error", error);
     throw error;

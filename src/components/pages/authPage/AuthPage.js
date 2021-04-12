@@ -4,17 +4,17 @@ import AuthForm from "../../authForm/AuthForm";
 import s from "./AuthPage.module.scss";
 
 class AuthPage extends Component {
-  componentDidMount() {
-    if (this.props.isAuthenticated) {
-      this.props.history.replace("/home");
-    }
-  }
+  // componentDidMount() {
+  //   if (this.props.isAuthenticated) {
+  //     this.props.history.replace("/");
+  //   }
+  // }
 
-  componentDidUpdate() {
-    if (this.props.isAuthenticated) {
-      this.props.history.replace("/home");
-    }
-  }
+  // componentDidUpdate() {
+  //   if (this.props.isAuthenticated) {
+  //     this.props.history.replace("/");
+  //   }
+  // }
 
   render() {
     return (
@@ -37,7 +37,7 @@ class AuthPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.user.email,
+  isAuthenticated: state.auth.token,
 });
 
 export default connect(mapStateToProps)(AuthPage);
