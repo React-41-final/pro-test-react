@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { CSSTransition } from "react-transition-group";
 import Logo from "../logo/Logo";
 import Navigation from "../navigation/Navigation";
 import UserInfo from "../userInfo/UserInfo";
@@ -17,29 +18,53 @@ class Header extends Component {
     const { isAuthorized } = this.props;
     return (
       <>
-        <div className={styles.wrapper}>
-          <div className={styles.container}>
-            <Logo />
-            <div className={styles.nav}>
-              <Navigation props={isAuthorized} />
+        <CSSTransition
+          in={true}
+          appear={true}
+          timeout={250}
+          classNames={styles}
+          unmountOnExit
+        >
+          <div className={styles.wrapper}>
+            <div className={styles.container}>
+              <Logo />
+              <div className={styles.nav}>
+                <CSSTransition
+                  in={true}
+                  appear={true}
+                  timeout={250}
+                  classNames={styles}
+                  unmountOnExit
+                >
+                  <Navigation isAuthorized={isAuthorized} />
+                </CSSTransition>
+              </div>
+              {/* {isAuthorized ? <UserInfo /> : false} */}
+              {isModalOn ? (
+                <div className={styles.burger}>
+                  <svg className={styles.burgerOn} onClick={this.handleModal}>
+                    <use href={sprite + "#close"} />
+                  </svg>
+                </div>
+              ) : (
+                <div className={styles.burger}>
+                  <svg className={styles.burgerOn} onClick={this.handleModal}>
+                    <use href={sprite + "#burger"} />
+                  </svg>
+                </div>
+              )}
             </div>
-            {isAuthorized ? <UserInfo /> : false}
-            {isModalOn ? (
-              <div className={styles.burger}>
-                <svg className={styles.burgerOn} onClick={this.handleModal}>
-                  <use href={sprite + "#close"} />
-                </svg>
-              </div>
-            ) : (
-              <div className={styles.burger}>
-                <svg className={styles.burgerOn} onClick={this.handleModal}>
-                  <use href={sprite + "#burger"} />
-                </svg>
-              </div>
-            )}
           </div>
-        </div>
-        {isModalOn ? <Navigation isAuthorized={isAuthorized} /> : false}
+        </CSSTransition>
+
+        <CSSTransition
+          in={isModalOn}
+          timeout={250}
+          classNames={styles}
+          unmountOnExit
+        >
+          <Navigation isAuthorized={isAuthorized} />
+        </CSSTransition>
       </>
     );
   }

@@ -21,7 +21,7 @@ const Footer = () => {
       </div>
       <p className={styles.author}>
         by{" "}
-        <NavLink to={routes.usefulInfo} className={styles.navLink}>
+        <NavLink to={routes.contactsPage} className={styles.navLink}>
           GoIT Students
         </NavLink>
       </p>
