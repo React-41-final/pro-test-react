@@ -39,7 +39,7 @@ class Header extends Component {
                   <Navigation isAuthorized={isAuthorized} />
                 </CSSTransition>
               </div>
-              {isAuthorized ? <UserInfo /> : false}
+              {/* {isAuthorized ? <UserInfo /> : false} */}
               {isModalOn ? (
                 <div className={styles.burger}>
                   <svg className={styles.burgerOn} onClick={this.handleModal}>
