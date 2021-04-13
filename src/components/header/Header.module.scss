@@ -9,9 +9,15 @@
 }
 
 .wrapper {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: #f5f6fb;
   border-bottom: 1px solid #e2e3e5;
 }
-
+.isHidden {
+  display: none;
+}
 .burger {
   position: relative;
   cursor: pointer;
@@ -26,14 +32,48 @@
   display: block;
   content: "";
   width: 1px;
-  height: 70px;
+  height: 73px;
   background-color: #e2e3e5;
   position: absolute;
-  top: -25px;
+  top: -26px;
   left: -20px;
 }
 .nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.logoutIcon {
   display: none;
+  position: relative;
+  cursor: pointer;
+}
+.logout1 {
+  fill: black;
+  width: 12px;
+  height: 16px;
+}
+.logout2 {
+  fill: black;
+  width: 9px;
+  height: 6px;
+  position: relative;
+  left: -5px;
+  top: -5px;
+}
+.logoutIcon::before {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 73px;
+  background-color: #e2e3e5;
+  position: absolute;
+  top: -26px;
+  left: -20px;
+}
+.arrow {
+  position: relative;
+  left: 1px;
 }
 // TRANSITION
 .appear {
@@ -68,11 +108,18 @@
   .container {
     min-width: 768px;
   }
-  .nav {
+  .isHidden {
     display: block;
   }
+
   .burger {
     display: none;
+  }
+  .logoutIcon {
+    display: block;
+    border: none;
+    outline: none;
+    background-color: transparent;
   }
 }
 

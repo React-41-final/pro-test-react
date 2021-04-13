@@ -4,6 +4,7 @@ import { CSSTransition } from "react-transition-group";
 import Logo from "../logo/Logo";
 import Navigation from "../navigation/Navigation";
 import UserInfo from "../userInfo/UserInfo";
+import { postLogoutUser } from "../../servises/reqToApi";
 import sprite from "../../sprites/sprite.svg";
 import styles from "./Header.module.scss";
 
@@ -15,7 +16,7 @@ class Header extends Component {
 
   render() {
     const { isModalOn } = this.state;
-    const { isAuthorized } = this.props;
+    const { isAuthorized, userName } = this.props;
     return (
       <>
         <CSSTransition
@@ -36,23 +37,38 @@ class Header extends Component {
                   classNames={styles}
                   unmountOnExit
                 >
-                  <Navigation isAuthorized={isAuthorized} />
+                  <div className={styles.isHidden}>
+                    <Navigation isAuthorized={isAuthorized} />
+                  </div>
                 </CSSTransition>
+                {isAuthorized && <UserInfo userName={userName} />}
+                {isAuthorized && (
+                  <button
+                    className={styles.logoutIcon}
+                    onClick={postLogoutUser}
+                  >
+                    <svg className={styles.logout1}>
+                      <use href={sprite + "#logOut_1"} />
+                    </svg>
+                    <svg className={styles.logout2}>
+                      <use href={sprite + "#logOut_2"} />
+                    </svg>
+                  </button>
+                )}
+                {isModalOn ? (
+                  <div className={styles.burger}>
+                    <svg className={styles.burgerOn} onClick={this.handleModal}>
+                      <use href={sprite + "#close"} />
+                    </svg>
+                  </div>
+                ) : (
+                  <div className={styles.burger}>
+                    <svg className={styles.burgerOn} onClick={this.handleModal}>
+                      <use href={sprite + "#burger"} />
+                    </svg>
+                  </div>
+                )}
               </div>
-              {/* {isAuthorized ? <UserInfo /> : false} */}
-              {isModalOn ? (
-                <div className={styles.burger}>
-                  <svg className={styles.burgerOn} onClick={this.handleModal}>
-                    <use href={sprite + "#close"} />
-                  </svg>
-                </div>
-              ) : (
-                <div className={styles.burger}>
-                  <svg className={styles.burgerOn} onClick={this.handleModal}>
-                    <use href={sprite + "#burger"} />
-                  </svg>
-                </div>
-              )}
             </div>
           </div>
         </CSSTransition>
@@ -72,6 +88,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => ({
   isAuthorized: state.auth.token,
+  userName: state.auth.user.name,
 });
 
 export default connect(mapStateToProps)(Header);
