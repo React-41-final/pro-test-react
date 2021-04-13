@@ -4,18 +4,6 @@ import AuthForm from "../../authForm/AuthForm";
 import s from "./AuthPage.module.scss";
 
 class AuthPage extends Component {
-  componentDidMount() {
-    if (this.props.isAuthenticated) {
-      this.props.history.replace("/");
-    }
-  }
-
-  componentDidUpdate() {
-    if (this.props.isAuthenticated) {
-      this.props.history.replace("/");
-    }
-  }
-
   render() {
     return (
       <div className={s.container}>
@@ -29,7 +17,7 @@ class AuthPage extends Component {
               to make the learning process more diverse_ ]
             </p>
           </div>
-          <AuthForm />
+          <AuthForm history={this.props.history} />
         </div>
       </div>
     );
@@ -37,7 +25,7 @@ class AuthPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.user.email,
+  isAuthenticated: state.auth.token,
 });
 
 export default connect(mapStateToProps)(AuthPage);

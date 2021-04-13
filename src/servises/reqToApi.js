@@ -25,19 +25,8 @@ const postSignInUser = async (user) => {
   try {
     const userData = await axios.post("/auth/login", user);
     await token.set(userData.data.accessToken);
-    return await userData.data;
-  } catch (error) {
-    console.log("error", error);
-    throw error;
-  }
-};
 
-const getGoogleLogin = async () => {
-  try {
-    const data = await axios.get("/auth/google");
-    console.log("reqTo ", data);
-    // await token.set(userData.data.accessToken);
-    return await data;
+    return await userData.data;
   } catch (error) {
     console.log("error", error);
     throw error;
@@ -55,6 +44,9 @@ const postLogoutUser = async () => {
 };
 
 const postRefreshUser = async (refreshToken, sid) => {
+  console.log("refreshToken: ", refreshToken);
+  console.log("sid: ", sid);
+
   token.set(refreshToken);
   try {
     const user = await axios.post("auth/refresh", { sid });
@@ -106,8 +98,9 @@ const postTheoryResults = async (results) => {
   }
 };
 
-const getUser = async () => {
+const getUser = async (userToken) => {
   try {
+    await token.set(userToken);
     const user = await axios.get("/user");
     return await user.data;
   } catch (error) {
@@ -119,7 +112,6 @@ const getUser = async () => {
 export {
   postRegister,
   postSignInUser,
-  getGoogleLogin,
   postLogoutUser,
   postRefreshUser,
   getTech,
