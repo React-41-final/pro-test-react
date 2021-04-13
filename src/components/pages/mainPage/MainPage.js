@@ -10,7 +10,9 @@ class MainPage extends Component {
   componentDidMount() {
     const { location } = this.props;
     const params = queryString.parse(location.search);
+    console.log("params: ", params);
     const keysArray = Object.keys(params);
+
     if (keysArray.length > 0) {
       this.props.onGetUserGoogle(params);
       this.props.history.push("/");

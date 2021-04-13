@@ -31,6 +31,7 @@ class AuthForm extends Component {
       await this.props.onRegister({ ...this.state });
       await this.props.onLogin({ ...this.state });
     }
+    this.props.history.replace("/");
   };
 
   onHandleSigIn = async () => {
