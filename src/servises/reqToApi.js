@@ -25,6 +25,7 @@ const postSignInUser = async (user) => {
   try {
     const userData = await axios.post("/auth/login", user);
     await token.set(userData.data.accessToken);
+
     return await userData.data;
   } catch (error) {
     console.log("error", error);
@@ -43,6 +44,9 @@ const postLogoutUser = async () => {
 };
 
 const postRefreshUser = async (refreshToken, sid) => {
+  console.log("refreshToken: ", refreshToken);
+  console.log("sid: ", sid);
+
   token.set(refreshToken);
   try {
     const user = await axios.post("auth/refresh", { sid });

@@ -33,6 +33,8 @@ const logIn = (credentials) => async (dispatch) => {
   dispatch(loginRequest());
   try {
     const user = await postSignInUser(credentials);
+    console.log("user: ", user);
+
     dispatch(loginSuccess(user));
   } catch (error) {
     dispatch(loginError(error));
@@ -55,17 +57,16 @@ const getUserGoogle = (tokenData) => async (dispatch) => {
 
 const refreshToken = (credentials) => async (dispatch, getState) => {
   const {
-    auth: { token: persistedToken },
-  } = getState();
-
-  const {
     auth: { user: refreshUser },
   } = getState();
 
-  if (persistedToken) {
+  if (refreshUser.refreshToken) {
     dispatch(refreshRequest());
     try {
-      const user = await postRefreshUser(persistedToken, refreshUser.id);
+      const user = await postRefreshUser(
+        refreshUser.refreshToken,
+        refreshUser.sid
+      );
       dispatch(refreshSuccess(user));
     } catch (error) {
       dispatch(refreshError(error));
