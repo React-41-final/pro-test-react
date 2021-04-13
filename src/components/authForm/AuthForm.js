@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { CSSTransition } from "react-transition-group";
 import { register, logIn } from "../../redux/operations/authOperations";
 import s from "./AuthForm.module.scss";
+import ModalErrorMessage from "./modalErrorMessage/ModalErrorMessage";
+import styles from "./modalAnimation.module.scss";
 
 class AuthForm extends Component {
   state = {
@@ -32,20 +35,26 @@ class AuthForm extends Component {
 
   onHandleSigIn = async () => {
     window.location.replace("https://protest-backend.goit.global/auth/google");
-    console.log(this.props);
-    // console.log("getGoogleLogin();: ", getGoogleLogin());
   };
 
   render() {
     const { email, password } = this.state;
+    const { error } = this.props;
     return (
       <div className={s.container}>
+        <CSSTransition
+          in={!!error}
+          classNames={styles}
+          timeout={500}
+          unmountOnExit
+        >
+          <ModalErrorMessage />
+        </CSSTransition>
         <p className={s.desc}>You can use your Google Account to authorize:</p>
 
         <button onClick={this.onHandleSigIn} className={s.googleButton}>
           Google
         </button>
-        {/* <a href="https://protest-backend.goit.global/auth/google">Google</a> */}
         <p className={s.desc}>Or login to our app using e-mail and password:</p>
 
         <form className={s.form} onSubmit={this.onHandleSubmit}>
@@ -81,9 +90,13 @@ class AuthForm extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  error: state.auth.error,
+});
+
 const mapDispatchToProps = {
   onRegister: register,
   onLogin: logIn,
 };
 
-export default connect(null, mapDispatchToProps)(AuthForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthForm);
