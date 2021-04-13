@@ -1,26 +1,38 @@
 import { lazy, Suspense, useEffect } from "react";
-import { Redirect, Route, Switch } from "react-router";
+import { Redirect, Route, Switch, useHistory, useLocation } from "react-router";
 import Layout from "../layout/Layout";
-import { refreshToken } from "../../redux/operations/authOperations";
+import {
+  getUserGoogle,
+  refreshToken,
+} from "../../redux/operations/authOperations";
 import routers from "../../routers/routers";
 import "./App.scss";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../loader/Loader";
 
+import queryString from "query-string";
 function App() {
   const dispatch = useDispatch();
-
+  const location = useLocation();
+  const history = useHistory();
   const isAuth = useSelector((state) => !!state.auth.token);
 
   useEffect(() => {
     dispatch(refreshToken());
+    const params = queryString.parse(location.search);
+    const keysArray = Object.keys(params);
+
+    if (keysArray.length > 0) {
+      dispatch(getUserGoogle(params));
+      history.push("/");
+    }
   }, []);
+
   return (
     <div>
       <Layout>
         <div className="App">
           <Suspense fallback={<Loader />}>
-            {/* <Switch> */}
             {isAuth ? (
               <Switch>
                 <Route
@@ -28,11 +40,6 @@ function App() {
                   exact
                   component={lazy(() => import("../pages/mainPage/MainPage"))}
                 />
-                {/* <Route
-                  path={routers.authPage}
-                  exact
-                  component={lazy(() => import("../pages/authPage/AuthPage"))}
-                /> */}
                 <Route
                   path={routers.contactsPage}
                   exact
@@ -60,11 +67,6 @@ function App() {
               </Switch>
             ) : (
               <Switch>
-                {/* <Route
-                  path={routers.mainPage}
-                  exact
-                  component={lazy(() => import("../pages/mainPage/MainPage"))}
-                /> */}
                 <Route
                   path={routers.authPage}
                   exact
@@ -80,7 +82,6 @@ function App() {
                 <Redirect to="/auth" />
               </Switch>
             )}
-            {/* </Switch> */}
           </Suspense>
         </div>
       </Layout>
