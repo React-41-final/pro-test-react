@@ -14,6 +14,11 @@ class Results extends Component {
     answers: null,
   };
 
+  componentDidMount() {
+    console.log(this.props.tests);
+    // this.props.resultsOperation(this.props.tests)
+  }
+
   render() {
     const { answers } = this.state;
 
@@ -50,7 +55,7 @@ class Results extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  answers: state.resultsOfTest.results.answers,
+  tests: state.resultsOfTest.test,
 });
 
 const mapDispatchToProps = {
