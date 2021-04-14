@@ -1,16 +1,13 @@
 .mainNav {
   display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  width: 100vw;
-  height: 100vh;
 }
 .mainNav ul {
+  margin: 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  width: 374px;
   list-style: none;
-  margin: 0 0 0 0;
 }
 .link {
   display: inline-block;
@@ -44,42 +41,13 @@
 .logoutLogo {
   height: 14px;
 }
-.logoutIcon {
-  position: relative;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-.logout1 {
-  fill: black;
-  width: 12px;
-  height: 16px;
-}
-.logout2 {
-  fill: black;
-  width: 9px;
-  height: 6px;
-  position: relative;
-  left: -5px;
-  top: -5px;
-}
-
-.arrow {
-  position: relative;
-  left: 1px;
-}
-.posCenter {
-  display: block;
-  margin: 26px auto 0;
-}
 
 @media screen and (max-width: 767px) {
   .mainNav ul {
     padding: 0;
     display: block;
     text-align: center;
-    width: 100vw;
+    width: 100%;
   }
 
   .mainNav ul li {
@@ -89,27 +57,5 @@
   }
   .mainNav ul li:not(:last-child) {
     margin-right: 0;
-  }
-}
-@media screen and (min-width: 768px) {
-  .posCenter {
-    display: none;
-  }
-  .mainNav {
-    height: 100%;
-    width: 100%;
-  }
-  .mainNav ul {
-    max-width: 345px;
-    display: flex;
-    justify-content: space-between;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .mainNav {
-    position: static;
-  }
-  .mainNav ul {
-    max-width: 400px;
   }
 }
