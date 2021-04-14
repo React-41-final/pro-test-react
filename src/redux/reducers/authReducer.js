@@ -64,6 +64,7 @@ const error = createReducer(null, {
   [registerError]: (_, { payload }) => payload,
   [loginError]: (_, { payload }) => payload,
   [getUserError]: (_, { payload }) => payload,
+  [loginSuccess]: () => null,
 });
 
 const authReducer = combineReducers({

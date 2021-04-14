@@ -33,8 +33,6 @@ const logIn = (credentials) => async (dispatch) => {
   dispatch(loginRequest());
   try {
     const user = await postSignInUser(credentials);
-    console.log("user: ", user);
-
     dispatch(loginSuccess(user));
   } catch (error) {
     dispatch(loginError(error));
@@ -47,8 +45,6 @@ const getUserGoogle = (tokenData) => async (dispatch) => {
     let data = {};
     const user = await getUser(tokenData.accessToken);
     data = { userData: user, ...tokenData };
-    // data.userData = user;
-    // data.tokens = tokenData;
     dispatch(getUserSuccess(data));
   } catch (error) {
     dispatch(getUserError(error));

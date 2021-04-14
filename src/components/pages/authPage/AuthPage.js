@@ -4,6 +4,10 @@ import AuthForm from "../../authForm/AuthForm";
 import s from "./AuthPage.module.scss";
 
 class AuthPage extends Component {
+  componentWillUnmount() {
+    this.props.history.replace("/");
+  }
+
   render() {
     return (
       <div className={s.container}>
