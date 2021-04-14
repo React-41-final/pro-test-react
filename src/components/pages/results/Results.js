@@ -16,7 +16,7 @@ class Results extends Component {
 
   componentDidMount() {
     console.log(this.props.tests);
-    // this.props.resultsOperation(this.props.tests)
+    this.props.resultsOperation(this.props.tests);
   }
 
   render() {
@@ -24,9 +24,7 @@ class Results extends Component {
 
     return answers == null ? (
       <div className={styles.results}>
-        <p className={styles.resultTitle}>
-        Please take the test
-        </p>
+        <p className={styles.resultTitle}>Please take the test</p>
         <NavLink to={routes.test} className={styles.buttonText}>
           <button className={styles.button} type="button">
             Tests
