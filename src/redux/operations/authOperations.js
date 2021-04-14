@@ -11,12 +11,16 @@ import {
   refreshRequest,
   refreshSuccess,
   refreshError,
+  logOutRequest,
+  logOutSuccess,
+  logOutError,
 } from "../actions/authAction";
 import {
   postRegister,
   postSignInUser,
   postRefreshUser,
   getUser,
+  postLogoutUser,
 } from "../../servises/reqToApi";
 
 const register = (credentials) => async (dispatch) => {
@@ -33,9 +37,22 @@ const logIn = (credentials) => async (dispatch) => {
   dispatch(loginRequest());
   try {
     const user = await postSignInUser(credentials);
+    console.log("user: ", user);
+
     dispatch(loginSuccess(user));
   } catch (error) {
     dispatch(loginError(error));
+  }
+};
+
+const logOut = () => async (dispatch) => {
+  dispatch(logOutRequest());
+  try {
+    await postLogoutUser();
+
+    dispatch(logOutSuccess());
+  } catch (error) {
+    dispatch(logOutError(error));
   }
 };
 
@@ -45,6 +62,8 @@ const getUserGoogle = (tokenData) => async (dispatch) => {
     let data = {};
     const user = await getUser(tokenData.accessToken);
     data = { userData: user, ...tokenData };
+    // data.userData = user;
+    // data.tokens = tokenData;
     dispatch(getUserSuccess(data));
   } catch (error) {
     dispatch(getUserError(error));
@@ -70,4 +89,4 @@ const refreshToken = (credentials) => async (dispatch, getState) => {
   }
 };
 
-export { register, logIn, getUserGoogle, refreshToken };
+export { register, logIn, getUserGoogle, refreshToken, logOut };

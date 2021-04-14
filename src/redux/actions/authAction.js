@@ -8,6 +8,10 @@ const loginRequest = createAction("auth/loginRequest");
 const loginSuccess = createAction("auth/loginSuccess");
 const loginError = createAction("auth/loginError");
 
+const logOutRequest = createAction("auth/logOutRequest");
+const logOutSuccess = createAction("auth/logOutSuccess");
+const logOutError = createAction("auth/logOutError");
+
 const getUserRequest = createAction("auth/getUserRequest");
 const getUserSuccess = createAction("auth/getUserSuccess");
 const getUserError = createAction("auth/getUserError");
@@ -29,4 +33,7 @@ export {
   refreshRequest,
   refreshSuccess,
   refreshError,
+  logOutRequest,
+  logOutSuccess,
+  logOutError,
 };
