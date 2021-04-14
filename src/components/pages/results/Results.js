@@ -16,7 +16,7 @@ class Results extends Component {
 
   componentDidMount() {
     console.log(this.props.tests);
-    this.props.resultsOperation(this.props.tests);
+    // this.props.resultsOperation(this.props.tests);
   }
 
   render() {
