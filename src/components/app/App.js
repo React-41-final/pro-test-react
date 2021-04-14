@@ -15,7 +15,7 @@ function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
-  const isAuth = useSelector((state) => !!state.auth.token);
+  // const isAuth = useSelector((state) => !!state.auth.token);
 
   useEffect(() => {
     dispatch(refreshToken());
