@@ -1,64 +1,36 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 import routes from "../../../routers/routers";
 import Diagram from "../../diagram/Diagram";
 import catImages from "../../../img/catResultPage.png";
-import { resultsOperation } from "../../../redux/operations/resultsOperations";
 
 import styles from "./Results.module.scss";
 
-class Results extends Component {
-  state = {
-    answers: null,
-  };
+const Results = () => {
+  return (
+    <div className={styles.results}>
+      <h2 className={styles.resultTitle}>Results</h2>
+      <p className={styles.resultName}>[ Testing theory_]</p>
+      {/* Динамические данные */}
 
-  componentDidMount() {
-    console.log(this.props.tests);
-    // this.props.resultsOperation(this.props.tests)
-  }
+      <Diagram />
 
-  render() {
-    const { answers } = this.state;
+      <img className={styles.catImages} src={catImages} alt="cat"></img>
+      <p className={styles.mainMessage}>Not Bad</p>
+      {/* Динамические данные */}
+      <p className={styles.secondaryMessage}>
+        But you still need to learn some materials.
+      </p>
+      {/* Динамические данные */}
 
-    return answers == null ? (
-      <div className={styles.results}>
-        <p className={styles.resultTitle}>
-        Please take the test
-        </p>
-        <NavLink to={routes.test} className={styles.buttonText}>
-          <button className={styles.button} type="button">
-            Tests
-          </button>
-        </NavLink>
-      </div>
-    ) : (
-      <div className={styles.results}>
-        <h2 className={styles.resultTitle}>Results</h2>
-        <p className={styles.resultName}>[ Testing theory_]</p>
-
-        <Diagram percent={answers.result} />
-
-        <img className={styles.catImages} src={catImages} alt="cat"></img>
-        <p className={styles.mainMessage}>{answers.mainMessage}</p>
-        <p className={styles.secondaryMessage}>{answers.secondaryMessage}</p>
-
-        <NavLink to={routes.test} className={styles.buttonText}>
-          <button className={styles.button} type="button">
-            Try again
-          </button>
-        </NavLink>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => ({
-  tests: state.resultsOfTest.test,
-});
-
-const mapDispatchToProps = {
-  resultsOperation: resultsOperation,
+      <NavLink to={routes.test} className={styles.buttonText}>
+        <button className={styles.button} type="button">
+          Try again
+        </button>
+      </NavLink>
+    </div>
+  );
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Results);
+
+export default Results;

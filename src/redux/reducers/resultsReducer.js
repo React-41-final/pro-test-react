@@ -1,35 +1,14 @@
-import { combineReducers, createReducer } from "@reduxjs/toolkit";
-import {
-  resultsRequest,
-  resultsSuccess,
-  resultsError,
-} from "../actions/resultsAction";
+import { combineReducers, createReducer } from '@reduxjs/toolkit';
 
-const initialUserState = {
-  answers: null,
-};
+const initialUserState = {};
 
-const results = createReducer(
-  { ...initialUserState },
-  {
-    [resultsSuccess]: (_, { payload }) => payload,
-  }
-);
+const results = createReducer({ ...initialUserState }, {});
 
-const error = createReducer(null, {
-  [resultsError]: (_, { payload }) => payload,
-});
-
-const loading = createReducer(false, {
-  [resultsRequest]: () => true,
-  [resultsSuccess]: () => false,
-  [resultsError]: () => false,
-});
+const error = createReducer(null, {});
 
 const resultsReducer = combineReducers({
   results,
   error,
-  loading,
 });
 
 export { resultsReducer };
