@@ -2,13 +2,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Navigation.module.css";
 import routes from "../../routers/routers";
-import UserInfo from "../userInfo/UserInfo";
-// import postLogoutUser from "../../servises/reqToApi";
+import { postLogoutUser } from "../../servises/reqToApi";
+import sprite from "../../sprites/sprite.svg";
 
-const Navigation = ({ isAuthorized = true }) => (
+const Navigation = ({ isAuthorized }) => (
   <nav className={styles.mainNav}>
     <ul>
-      {true && (
+      {isAuthorized && (
         <li>
           <NavLink
             to={routes.mainPage}
@@ -20,7 +20,7 @@ const Navigation = ({ isAuthorized = true }) => (
           </NavLink>
         </li>
       )}
-      {true && (
+      {isAuthorized && (
         <li>
           <NavLink
             to={routes.usefulInfo}
@@ -42,19 +42,19 @@ const Navigation = ({ isAuthorized = true }) => (
           Contacts
         </NavLink>
       </li>
-      <li>
-        <UserInfo />
-      </li>
     </ul>
-    <div>
-      <button
-        type="click"
-        className={styles.headerBtn}
-        // onClick={postLogoutUser}
-      >
-        logout
-      </button>
-    </div>
+    {isAuthorized && (
+      <div className={styles.posCenter}>
+        <button className={styles.logoutIcon} onClick={postLogoutUser}>
+          <svg className={styles.logout1}>
+            <use href={sprite + "#logOut_1"} />
+          </svg>
+          <svg className={styles.logout2}>
+            <use href={sprite + "#logOut_2"} />
+          </svg>
+        </button>
+      </div>
+    )}
   </nav>
 );
 
