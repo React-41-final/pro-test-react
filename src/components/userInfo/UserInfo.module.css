@@ -1,5 +1,4 @@
 .container {
-  margin: 0 40px 0 20px;
   display: flex;
   align-items: center;
 }
@@ -18,28 +17,16 @@
   box-shadow: 0 2px 2px 0 rgba(29, 29, 27, 0.1);
 }
 .userName {
-  margin-left: 10px;
+  margin-left: 40px;
   font-family: "Montserrat-500", sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
   color: #000;
-  display: none;
 }
 
-@media screen and (min-width: 768px) {
-  .userLetter {
-    font-size: 13px;
-  }
-  .userName {
-    display: block;
-  }
-}
 @media screen and (min-width: 1280px) {
   .userLetter {
     font-size: 13px;
-  }
-  .container {
-    margin: 0 40px 0 70px;
   }
 }
