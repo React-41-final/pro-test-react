@@ -10,10 +10,11 @@ class AuthForm extends Component {
   state = {
     email: "",
     password: "",
+    isModal: false,
   };
 
   componentWillUnmount() {
-    this.setState({ email: "", password: "" });
+    this.setState({ email: "", password: "", isModal: false });
   }
 
   onHandleChange = (e) => {
@@ -26,25 +27,42 @@ class AuthForm extends Component {
     const target = e.nativeEvent.submitter.dataset.action;
 
     if (target === "login") {
-      await this.props.onLogin({ ...this.state });
+      await this.props.onLogin({
+        email: this.state.email,
+        password: this.state.password,
+      });
     } else {
-      await this.props.onRegister({ ...this.state });
-      await this.props.onLogin({ ...this.state });
+      await this.props.onRegister({
+        email: this.state.email,
+        password: this.state.password,
+      });
+      await this.props.onLogin({
+        email: this.state.email,
+        password: this.state.password,
+      });
     }
-    // this.props.history.replace("/");
+
+    if (!!this.props.error) {
+      this.setState({ isModal: true });
+      setTimeout(this.onToggleModal, 3000);
+    }
   };
 
   onHandleSigIn = async () => {
     window.location.replace("https://protest-backend.goit.global/auth/google");
   };
 
+  onToggleModal = () => {
+    this.setState({ isModal: false });
+  };
+
   render() {
-    const { email, password } = this.state;
+    const { email, password, isModal } = this.state;
     const { error } = this.props;
     return (
       <div className={s.container}>
         <CSSTransition
-          in={!!error}
+          in={!!error && isModal}
           classNames={styles}
           timeout={500}
           unmountOnExit
