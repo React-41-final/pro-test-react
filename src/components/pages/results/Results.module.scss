@@ -1,8 +1,10 @@
 @import "../../../fonts/fonts.scss";
 
 .results {
+  padding-top: 20px;
   text-align: center;
-  background-color: #e5e5e5;
+  min-height: min-content;
+  // background-color: #e5e5e5;
 }
 
 .resultTitle {
