@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import styles from "./Navigation.module.css";
+import styles from "./Navigation.module.scss";
 import routes from "../../routers/routers";
 import { logOut } from "../../redux/operations/authOperations";
 import sprite from "../../sprites/sprite.svg";
