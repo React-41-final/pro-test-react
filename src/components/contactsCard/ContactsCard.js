@@ -1,49 +1,53 @@
-import React, { Component } from "react";
+import React from "react";
 import s from "./ContactsCard.module.scss";
-import img from "../../img/chak.jpg";
+import sprite from "../../sprites/sprite.svg";
 
-export default class ContactsCard extends Component {
-  state = {
-    isModal: false,
-  };
-  render() {
-    return (
-      <div className={s.container}>
-        <img src={img} className={s.image} alt="profile" />
-        <div className={s.box}>
-          <h3 className={s.name}>NAME</h3>
-          <p className={s.position}>Front-End Developer</p>
-          <p className={s.description}>
-            Lorem Ipsum has been the standard "fish" for Latin texts since the
-            early 16th century.
-          </p>
-          <div className={s.socialContainer}>
-            <a
-              href="linkedin"
-              className={`${s.link} ${s.linkedin}`}
-              target="_blanck"
-            >
-              <span className={s.visuallyHidden}>linkedin</span>
-            </a>
+const ContactsCard = ({
+  name,
+  photo,
+  position,
+  tasks,
+  email,
+  linkedin,
+  facebook,
+}) => {
+  return (
+    <div className={s.container}>
+      <img src={photo} className={s.image} alt="profile" />
+      <div className={s.box}>
+        <h3 className={s.name}>{name}</h3>
+        <p className={s.position}>{position}</p>
+        <p className={s.description}>{tasks}</p>
 
-            <a
-              href="facebook"
-              className={`${s.link} ${s.facebook}`}
-              target="_blanck"
-            >
-              <span className={s.visuallyHidden}>Facebook</span>
+        <ul className={s.contacts}>
+          <li className={s.contactsWrapper}>
+            <a href={linkedin}>
+              &nbsp;
+              <svg className={s.contactsLogo}>
+                <use href={sprite + "#linkedin-logo"} />
+              </svg>{" "}
             </a>
-
-            <a
-              href="mailto:email"
-              className={`${s.link} ${s.email}`}
-              target="_blanck"
-            >
-              <span className={s.visuallyHidden}>Email</span>
+          </li>
+          <li className={s.contactsWrapper}>
+            <a href={facebook}>
+              &nbsp;
+              <svg className={s.contactsLogo}>
+                <use href={sprite + "#facebook-logo"} />
+              </svg>{" "}
             </a>
-          </div>
-        </div>
+          </li>
+          <li className={s.contactsWrapper}>
+            <a href={`mailto:${email}`}>
+              <svg className={s.contactsLogo}>
+                <use href={sprite + "#email-logo"} />
+              </svg>
+              {/* <span className={s.contactsLogo__text}> {email}</span> */}
+            </a>
+          </li>
+        </ul>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default ContactsCard;
