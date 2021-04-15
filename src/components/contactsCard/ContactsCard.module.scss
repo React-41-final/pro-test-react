@@ -1,6 +1,6 @@
 .container {
     width: 280px;
-    height: 370px;
+    height: 400px;
     margin: 0 auto;
 }
 
@@ -37,10 +37,61 @@
 
 .description {
     font-family: "Montserrat-500";
-    margin: 0;
+    margin: 10px;
     font-size: 12px;
     line-height: 16px;
 }
+
+.socialContainer {
+    display: flex;
+    margin: 0;
+    padding-left: 10px;
+}
+
+.link {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+
+.mail {
+    display: block;
+    font-size: 12px;
+}
+
+.facebook {
+    background-image: url("../../img/facebook.png");
+}
+
+.email {
+    background-image: url("../../img/email.png");
+}
+
+.linkedin {
+    background-image: url("../../img/linkedin.png");
+}
+
+.visuallyHidden:not(:focus):not(:active),
+input[type='checkbox'].visually-hidden,
+input[type='radio'].visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+
 
 @media (min-width: 768px) {
     .container {
