@@ -1,49 +1,54 @@
-import React, { Component } from "react";
-import s from "./ContactsCard.module.scss";
-import img from "../../img/chak.jpg";
+import React from "react";
+import s from "./ContactsCard.module.css";
+import sprite from "../../sprites/sprite.svg";
 
-export default class ContactsCard extends Component {
-  state = {
-    isModal: false,
-  };
-  render() {
-    return (
-      <div className={s.container}>
-        <img src={img} className={s.image} alt="profile" />
-        <div className={s.box}>
-          <h3 className={s.name}>NAME</h3>
-          <p className={s.position}>Front-End Developer</p>
-          <p className={s.description}>
-            Lorem Ipsum has been the standard "fish" for Latin texts since the
-            early 16th century.
-          </p>
-          <div className={s.socialContainer}>
-            <a
-              href="linkedin"
-              className={`${s.link} ${s.linkedin}`}
-              target="_blanck"
-            >
-              <span className={s.visuallyHidden}>linkedin</span>
-            </a>
+const ContactsCard = ({ name, photo, position, tasks, email, linkedin }) => {
+  console.log(
+    "name, photo, position, tasks, email, linkedin: ",
+    name,
+    photo,
+    position,
+    tasks,
+    email,
+    linkedin
+  );
 
-            <a
-              href="facebook"
-              className={`${s.link} ${s.facebook}`}
-              target="_blanck"
-            >
-              <span className={s.visuallyHidden}>Facebook</span>
-            </a>
-
-            <a
-              href="mailto:email"
-              className={`${s.link} ${s.email}`}
-              target="_blanck"
-            >
-              <span className={s.visuallyHidden}>Email</span>
-            </a>
-          </div>
-        </div>
+  return (
+    <div className={s.container}>
+      <img src={photo} className={s.image} alt="profile" />
+      <div className={s.box}>
+        <h3 className={s.name}>{name}</h3>
+        <p className={s.position}>{position}</p>
+        <p className={s.description}>{tasks}</p>
       </div>
-    );
-  }
-}
+      <ul className={s.contacts}>
+        <li className={s.contactsWrapper}>
+          <a href={linkedin}>
+            &nbsp;
+            <svg className={s.contactsLogo}>
+              <use href={sprite + "#linkedin-logo"} />
+            </svg>{" "}
+          </a>
+        </li>
+        <li className={s.contactsWrapper}>
+          <a href={linkedin}>
+            &nbsp;
+            <svg className={s.contactsLogo}>
+              <use href={sprite + "#facebook-logo"} />
+            </svg>{" "}
+          </a>
+        </li>
+        <li className={s.contactsWrapper}>
+          <a href={email}>
+            <svg className={s.contactsLogo}>
+              <use href={sprite + "#email-logo"} />
+            </svg>
+            <span>&nbsp; {email}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  );
+};
+
+export default ContactsCard;
