@@ -21,8 +21,8 @@ class Questions extends Component {
 
   addList = (questionId, value) => {
     const answ = {
-      questionId,
-      value,
+      questionId: questionId,
+      answer: value,
     };
 
     this.setState((prevState) => ({

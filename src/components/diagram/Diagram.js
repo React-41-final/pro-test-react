@@ -1,32 +1,33 @@
-// import React from "react";
-
-// const Diagram = () => {
-//   return <h3>Diagram</h3>;
-// };
-
-// export default Diagram;
-
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
 import { Chart } from "react-google-charts";
 import styles from "./Diagram.module.scss";
 
 class Diagram extends Component {
-  state ={
-    data: [
-      ["Task", "Hours per Day"],
-      [`${this.props.percent.slice(0, -1)}%  Correct `, Number(Math.round(this.props.percent.slice(0, -1)/100*12))], //Динамические данные
-      [`${100-this.props.percent.slice(0, -1)}%  Incorrect `, 12-Number(Math.round(this.props.percent.slice(0, -1)/100*12))], //Динамические данные
-    ],
+  state = {
+    percent: null,
+  };
+
+  componentDidMount() {
+    if (this.props.results.result) {
+      const percent = this.props.results.result.slice(0, -1);
+      this.setState( { ...this.state.percent, percent });
+    }
   }
 
   render() {
-    return (
+    return (this.state.percent !== null) ? (
       <div className={styles.container}>
         <Chart
           className={styles.chart}
           chartType="PieChart"
           loader={<div>Loading Chart</div>}
-          data={this.state.data}
+          data={[
+            ["Task", "Hours per Day"],
+            [`${this.state.percent}%  Correct `, Number(Math.round(this.state.percent/100*12))], 
+            [`${100-this.state.percent}%  Incorrect `, 12-Number(Math.round(this.state.percent/100*12))], 
+          ]}
           options={{
             pieStartAngle: 100,
             pieSliceText: "none",
@@ -41,16 +42,21 @@ class Diagram extends Component {
         <div className={styles.answers}>
           <p className={styles.textAnswers}>
             Correct answers -{" "}
-            <span className={styles.textAnswersNumber}>{Number(Math.round(this.props.percent.slice(0, -1)/100*12))}</span>
+            <span className={styles.textAnswersNumber}>
+              {Number(Math.round((this.state.percent / 100) * 12))}
+            </span>
           </p>
           <p className={styles.textAnswers}>
             Total questions -{" "}
             <span className={styles.textAnswersNumber}>12</span>
           </p>
         </div>
-      </div>
-    );
+      </div>) : <></>
   }
 }
 
-export default Diagram;
+const mapStateToProps = (state) => ({
+  results: state.resultsOfTest.results,
+});
+
+export default connect(mapStateToProps)(Diagram);
