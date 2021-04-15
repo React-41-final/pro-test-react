@@ -11,12 +11,16 @@ import {
   refreshRequest,
   refreshSuccess,
   refreshError,
+  logOutRequest,
+  logOutSuccess,
+  logOutError,
 } from "../actions/authAction";
 import {
   postRegister,
   postSignInUser,
   postRefreshUser,
   getUser,
+  postLogoutUser,
 } from "../../servises/reqToApi";
 
 const register = (credentials) => async (dispatch) => {
@@ -38,6 +42,17 @@ const logIn = (credentials) => async (dispatch) => {
     dispatch(loginSuccess(user));
   } catch (error) {
     dispatch(loginError(error));
+  }
+};
+
+const logOut = () => async (dispatch) => {
+  dispatch(logOutRequest());
+  try {
+    await postLogoutUser();
+
+    dispatch(logOutSuccess());
+  } catch (error) {
+    dispatch(logOutError(error));
   }
 };
 
@@ -74,4 +89,4 @@ const refreshToken = (credentials) => async (dispatch, getState) => {
   }
 };
 
-export { register, logIn, getUserGoogle, refreshToken };
+export { register, logIn, getUserGoogle, refreshToken, logOut };

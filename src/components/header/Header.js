@@ -6,6 +6,7 @@ import Navigation from "../navigation/Navigation";
 import UserInfo from "../userInfo/UserInfo";
 import sprite from "../../sprites/sprite.svg";
 import styles from "./Header.module.scss";
+import { logOut } from "../../redux/operations/authOperations";
 
 class Header extends Component {
   state = {
@@ -13,9 +14,13 @@ class Header extends Component {
   };
   handleModal = () => this.setState({ isModalOn: !this.state.isModalOn });
 
+  logOutUser = () => {
+    const { logOut } = this.props;
+    logOut();
+  };
   render() {
     const { isModalOn } = this.state;
-    const { isAuthorized } = this.props;
+    const { isAuthorized, email } = this.props;
     return (
       <>
         <CSSTransition
@@ -36,23 +41,38 @@ class Header extends Component {
                   classNames={styles}
                   unmountOnExit
                 >
-                  <Navigation isAuthorized={isAuthorized} />
+                  <div className={styles.isHidden}>
+                    <Navigation isAuthorized={isAuthorized} />
+                  </div>
                 </CSSTransition>
+                {isAuthorized && <UserInfo email={email} />}
+                {isAuthorized && (
+                  <button
+                    className={styles.logoutIcon}
+                    onClick={this.logOutUser}
+                  >
+                    <svg className={styles.logout1}>
+                      <use href={sprite + "#logOut_1"} />
+                    </svg>
+                    <svg className={styles.logout2}>
+                      <use href={sprite + "#logOut_2"} />
+                    </svg>
+                  </button>
+                )}
+                {isModalOn ? (
+                  <div className={styles.burger}>
+                    <svg className={styles.burgerOn} onClick={this.handleModal}>
+                      <use href={sprite + "#close"} />
+                    </svg>
+                  </div>
+                ) : (
+                  <div className={styles.burger}>
+                    <svg className={styles.burgerOn} onClick={this.handleModal}>
+                      <use href={sprite + "#burger"} />
+                    </svg>
+                  </div>
+                )}
               </div>
-              {/* {isAuthorized ? <UserInfo /> : false} */}
-              {isModalOn ? (
-                <div className={styles.burger}>
-                  <svg className={styles.burgerOn} onClick={this.handleModal}>
-                    <use href={sprite + "#close"} />
-                  </svg>
-                </div>
-              ) : (
-                <div className={styles.burger}>
-                  <svg className={styles.burgerOn} onClick={this.handleModal}>
-                    <use href={sprite + "#burger"} />
-                  </svg>
-                </div>
-              )}
             </div>
           </div>
         </CSSTransition>
@@ -63,7 +83,10 @@ class Header extends Component {
           classNames={styles}
           unmountOnExit
         >
-          <Navigation isAuthorized={isAuthorized} />
+          <Navigation
+            isAuthorized={isAuthorized}
+            onHandleModal={this.handleModal}
+          />
         </CSSTransition>
       </>
     );
@@ -72,6 +95,9 @@ class Header extends Component {
 
 const mapStateToProps = (state) => ({
   isAuthorized: state.auth.token,
+  email: state.auth.user.userData.email,
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = { logOut };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -1,32 +1,35 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 import styles from "./Navigation.module.css";
 import routes from "../../routers/routers";
-import UserInfo from "../userInfo/UserInfo";
-// import postLogoutUser from "../../servises/reqToApi";
+import { logOut } from "../../redux/operations/authOperations";
+import sprite from "../../sprites/sprite.svg";
 
-const Navigation = ({ isAuthorized = true }) => (
+const Navigation = ({ isAuthorized, onHandleModal, logOut }) => (
   <nav className={styles.mainNav}>
     <ul>
-      {true && (
+      {isAuthorized && (
         <li>
           <NavLink
             to={routes.mainPage}
             exact
             className={styles.link}
             activeClassName={styles.activeLink}
+            onClick={onHandleModal}
           >
             Home
           </NavLink>
         </li>
       )}
-      {true && (
+      {isAuthorized && (
         <li>
           <NavLink
             to={routes.usefulInfo}
             exact
             className={styles.link}
             activeClassName={styles.activeLink}
+            onClick={onHandleModal}
           >
             Materials
           </NavLink>
@@ -38,24 +41,26 @@ const Navigation = ({ isAuthorized = true }) => (
           exact
           className={styles.link}
           activeClassName={styles.activeLink}
+          onClick={onHandleModal}
         >
           Contacts
         </NavLink>
       </li>
-      <li>
-        <UserInfo />
-      </li>
     </ul>
-    <div>
-      <button
-        type="click"
-        className={styles.headerBtn}
-        // onClick={postLogoutUser}
-      >
-        logout
-      </button>
-    </div>
+    {isAuthorized && (
+      <div className={styles.posCenter}>
+        <button className={styles.logoutIcon} onClick={logOut}>
+          <svg className={styles.logout1}>
+            <use href={sprite + "#logOut_1"} />
+          </svg>
+          <svg className={styles.logout2}>
+            <use href={sprite + "#logOut_2"} />
+          </svg>
+        </button>
+      </div>
+    )}
   </nav>
 );
 
-export default Navigation;
+const mapDispatchToProps = { logOut };
+export default connect(null, mapDispatchToProps)(Navigation);

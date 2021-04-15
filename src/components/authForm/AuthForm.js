@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { CSSTransition } from "react-transition-group";
 import { register, logIn } from "../../redux/operations/authOperations";
 import s from "./AuthForm.module.scss";
+import ModalErrorMessage from "./modalErrorMessage/ModalErrorMessage";
+import styles from "./modalAnimation.module.scss";
 
 class AuthForm extends Component {
   state = {
     email: "",
     password: "",
+    isModal: false,
   };
 
   componentWillUnmount() {
-    this.setState({ email: "", password: "" });
+    this.setState({ email: "", password: "", isModal: false });
   }
 
   onHandleChange = (e) => {
@@ -23,30 +27,53 @@ class AuthForm extends Component {
     const target = e.nativeEvent.submitter.dataset.action;
 
     if (target === "login") {
-      await this.props.onLogin({ ...this.state });
+      await this.props.onLogin({
+        email: this.state.email,
+        password: this.state.password,
+      });
     } else {
-      await this.props.onRegister({ ...this.state });
-      await this.props.onLogin({ ...this.state });
+      await this.props.onRegister({
+        email: this.state.email,
+        password: this.state.password,
+      });
+      await this.props.onLogin({
+        email: this.state.email,
+        password: this.state.password,
+      });
     }
-    this.props.history.replace("/");
+
+    if (!!this.props.error) {
+      this.setState({ isModal: true });
+      setTimeout(this.onToggleModal, 3000);
+    }
   };
 
   onHandleSigIn = async () => {
     window.location.replace("https://protest-backend.goit.global/auth/google");
-    console.log(this.props);
-    // console.log("getGoogleLogin();: ", getGoogleLogin());
+  };
+
+  onToggleModal = () => {
+    this.setState({ isModal: false });
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, isModal } = this.state;
+    const { error } = this.props;
     return (
       <div className={s.container}>
+        <CSSTransition
+          in={!!error && isModal}
+          classNames={styles}
+          timeout={500}
+          unmountOnExit
+        >
+          <ModalErrorMessage />
+        </CSSTransition>
         <p className={s.desc}>You can use your Google Account to authorize:</p>
 
         <button onClick={this.onHandleSigIn} className={s.googleButton}>
           Google
         </button>
-        {/* <a href="https://protest-backend.goit.global/auth/google">Google</a> */}
         <p className={s.desc}>Or login to our app using e-mail and password:</p>
 
         <form className={s.form} onSubmit={this.onHandleSubmit}>
@@ -82,9 +109,13 @@ class AuthForm extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  error: state.auth.error,
+});
+
 const mapDispatchToProps = {
   onRegister: register,
   onLogin: logIn,
 };
 
-export default connect(null, mapDispatchToProps)(AuthForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthForm);
