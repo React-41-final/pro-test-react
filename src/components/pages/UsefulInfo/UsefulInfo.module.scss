@@ -1,8 +1,11 @@
 .usefulInfo {
+  // height: 545px;
   box-sizing: border-box;
   background-image: url("../../../img/background_usefulInfo_mob.png");
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-size: cover;
+  background-position: -312px 0px;
+  background-size: 270%;
   @media screen and (min-width: 768px) {
     background-image: url("../../../img/background_usefulInfo_tab.png");
     background-position: 0px -73px;
@@ -14,9 +17,11 @@
 }
 
 .container {
-  padding-bottom: 88px;
+  min-height: 545px;
+  // padding-bottom: 88px;
   padding-top: 37px;
   padding-left: 6.25%;
+  // margin-bottom: 88px;
 
   @media screen and (min-width: 768px) {
     padding-left: 15.1%;
@@ -34,7 +39,7 @@
 
 .usefulInfo-sources {
   margin-bottom: 27px;
-  width: 207px;
+  width: 158px;
   hr {
     width: 150px;
   }
