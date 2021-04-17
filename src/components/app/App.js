@@ -26,6 +26,7 @@ function App() {
       dispatch(getUserGoogle(params));
       history.push("/");
     }
+    // eslint-disable-next-line
   }, []);
 
   return (

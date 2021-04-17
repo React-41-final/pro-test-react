@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ContactsCard from "../../contactsCard/ContactsCard";
 
 import s from "./ContactsPage.module.scss";
