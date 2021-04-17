@@ -109,6 +109,20 @@ const getUser = async (userToken) => {
   }
 };
 
+const getTestData = async (type) => {
+  try {
+    if (type === "technical") {
+      const data = await axios.get("/qa-test/tech");
+      return data;
+    }
+
+    const data = await axios.get("/qa-test/theory");
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export {
   postRegister,
   postSignInUser,
@@ -119,4 +133,5 @@ export {
   postTechResults,
   postTheoryResults,
   getUser,
+  getTestData,
 };

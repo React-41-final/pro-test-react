@@ -4,12 +4,12 @@
 }
 
 .quote {
+  position: relative;
   font-family: "Montserrat-700", sans-serif;
   font-size: 12px;
   text-align: center;
   line-height: 20px;
   letter-spacing: 0.02em;
-  margin-bottom: 20px;
   padding-bottom: 16px;
   margin: 0;
 }
@@ -18,17 +18,20 @@
   display: block;
 }
 
-.line {
+.quote::after {
+  content: "";
+  position: absolute;
   width: 130px;
   height: 1px;
+  top: 95px;
+  right: 75px;
   opacity: 0.15;
   background-color: #000000;
   border: none;
-  margin: 0 auto;
 }
 
 .authorBox {
-  margin: 20px auto 36px auto;
+  margin: 40px auto 36px auto;
 }
 
 .authorBox__author,
@@ -122,15 +125,16 @@
   .quote {
     font-size: 22px;
     line-height: 30px;
-    margin-bottom: 10px;
   }
 
-  .line {
+  .quote::after {
     width: 321.5px;
+    top: 118px;
+    right: 170px;
   }
 
   .authorBox {
-    margin-bottom: 60px;
+    margin: 24px 0 60px 0;
   }
 
   .authorBox__author,
@@ -185,11 +189,6 @@
   .quote {
     width: 650px;
     margin: 0 auto;
-  }
-
-  .line {
-    margin-top: 29px;
-    margin-bottom: 13px;
   }
 
   .authorBox {

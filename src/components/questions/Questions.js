@@ -31,7 +31,7 @@ class Questions extends Component {
         answ,
       ],
     }));
-  };// вынести в Redux
+  }; // вынести в Redux
 
   handleChange = ({ target }) => {
     const { name, value, type, checked } = target;
