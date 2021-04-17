@@ -1,27 +1,27 @@
 .usefulInfo {
-  // height: 545px;
+  min-height: calc(100vh - 129px);
+
   box-sizing: border-box;
   background-image: url("../../../img/background_usefulInfo_mob.png");
-  background-repeat: repeat-y;
+  background-repeat: no-repeat;
   background-size: cover;
-  background-position: -312px 0px;
-  background-size: 270%;
+  background-position: -83px -52px;
+
   @media screen and (min-width: 768px) {
     background-image: url("../../../img/background_usefulInfo_tab.png");
     background-position: 0px -73px;
   }
   @media screen and (min-width: 1280px) {
-    // background-image: url("../../../img/background_usefulInfo_desk.png");
+    background-image: url("../../../img/background_usefulInfo_desk.png");
     background-position: 0px 0px;
+    // min-height: calc(100vh - 129px);
   }
 }
 
 .container {
-  min-height: 545px;
-  // padding-bottom: 88px;
+  padding-bottom: 88px;
   padding-top: 37px;
   padding-left: 6.25%;
-  // margin-bottom: 88px;
 
   @media screen and (min-width: 768px) {
     padding-left: 15.1%;
@@ -39,7 +39,7 @@
 
 .usefulInfo-sources {
   margin-bottom: 27px;
-  width: 158px;
+  width: 150px;
   hr {
     width: 150px;
   }
@@ -66,6 +66,7 @@
 
 .sources-list {
   margin-top: 10px;
+  list-style-type: decimal;
   list-style-position: inside;
   :nth-child(1) {
     a {
