@@ -8,7 +8,7 @@ import { postTechResults, postTheoryResults } from "../../servises/reqToApi";
 const resultsOperation = (tests, typeOfTest) => async (dispatch) => {
   dispatch(resultsRequest());
 
-  if (typeOfTest) { //Указать тип теста который проходили, для отправки запроса на бекенд
+  if (typeOfTest === "technical") {
     try {
       const results = await postTechResults(tests);
       dispatch(resultsSuccess(results));
@@ -22,7 +22,7 @@ const resultsOperation = (tests, typeOfTest) => async (dispatch) => {
     } catch (error) {
       dispatch(resultsError(error));
     }
-  } //Дописать условие на тип теста
-}; //нужно добавить операцию для "postTheoryResults"
+  } 
+};
 
 export { resultsOperation };

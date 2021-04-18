@@ -1,4 +1,11 @@
-import { _Request, _Success, _Error } from "../actions/testAction";
+import {
+  _Request,
+  _Success,
+  _Error,
+  addAnswersListRequest,
+  addAnswersListSuccess,
+  addAnswersListError,
+} from "../actions/testAction";
 import { getTestData } from "../../servises/reqToApi";
 
 const test = (type) => async (dispatch) => {
@@ -12,4 +19,14 @@ const test = (type) => async (dispatch) => {
   }
 };
 
-export { test };
+const answersListOperation = (answers) => async (dispatch) => {
+  dispatch(addAnswersListRequest());
+
+  try {
+    dispatch(addAnswersListSuccess(answers));
+  } catch (error) {
+    dispatch(addAnswersListError(error));
+  }
+};
+
+export { test, answersListOperation };
