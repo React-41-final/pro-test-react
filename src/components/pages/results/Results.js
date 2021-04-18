@@ -14,7 +14,10 @@ class Results extends Component {
 
   componentDidMount() {
     if (this.props.tests.length === 12) {
-      this.props.resultsOperation(this.props.tests, "Переменная что отвечает за тим запроса");
+      this.props.resultsOperation(
+        this.props.tests,
+        "Переменная что отвечает за тим запроса"
+      );
     }
   }
 
