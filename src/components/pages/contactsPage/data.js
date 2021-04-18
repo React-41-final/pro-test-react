@@ -1,4 +1,4 @@
-import IvanIlch from "../../../img/ourTeam/1.png";
+import IvanIlch from "../../../img/ourTeam/IvanIlch;.jpg";
 import AlexKozzlov from "../../../img/ourTeam/2.png";
 import MyronovychOleksandr from "../../../img/ourTeam/Myronovych_Oleksandr.png";
 import AlexSyzov from "../../../img/ourTeam/4.png";
@@ -9,10 +9,10 @@ const contacts = [
     name: "Ivan Ilchenko",
     photo: IvanIlch,
     position: "Front-End Developer",
-    tasks: "App, Registration, Login, Results page",
-    email: "aaaa@gmail.com",
-    linkedin: "https://www.linkedin.com/in/alexkozzlov/",
-    facebook: "https://www.facebook.com/profile.php?id=100022988104383",
+    tasks: "I've developed header, logo and modal-window.",
+    email: "ilchenkoivan92@gmail.com",
+    linkedin: "https://www.linkedin.com/in/ivan-ilchenko-b603871b1/",
+    facebook: "https://www.facebook.com/profile.php?id=100025083282787",
   },
   {
     name: "Alex Kozlov",

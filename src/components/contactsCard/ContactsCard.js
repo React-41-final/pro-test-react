@@ -21,7 +21,7 @@ const ContactsCard = ({
 
         <ul className={s.contacts}>
           <li className={s.contactsWrapper}>
-            <a href={linkedin}>
+            <a href={linkedin} target="_blank">
               &nbsp;
               <svg className={s.contactsLogo}>
                 <use href={sprite + "#linkedin-logo"} />
@@ -29,7 +29,7 @@ const ContactsCard = ({
             </a>
           </li>
           <li className={s.contactsWrapper}>
-            <a href={facebook}>
+            <a href={facebook} target="_blank">
               &nbsp;
               <svg className={s.contactsLogo}>
                 <use href={sprite + "#facebook-logo"} />
@@ -37,7 +37,7 @@ const ContactsCard = ({
             </a>
           </li>
           <li className={s.contactsWrapper}>
-            <a href={`mailto:${email}`}>
+            <a href={`mailto:${email}`} target="_blank">
               <svg className={s.contactsLogo}>
                 <use href={sprite + "#email-logo"} />
               </svg>
