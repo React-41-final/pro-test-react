@@ -1,5 +1,6 @@
 import React from "react";
 import ContactsCard from "../../contactsCard/ContactsCard";
+import { v4 as uuidv4 } from "uuid";
 
 import s from "./ContactsPage.module.scss";
 import { contacts } from "./data";
@@ -12,7 +13,7 @@ const ContactsPage = () => {
       </div>
       <ul className={s.ourTeam}>
         {contacts.map((item) => (
-          <li className={s.ourTeam_Item}>
+          <li key={uuidv4()} className={s.ourTeam_Item}>
             <ContactsCard {...item} />
           </li>
         ))}
