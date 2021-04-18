@@ -1,8 +1,16 @@
 .usefulInfo {
+  min-height: calc(100vh - 129px);
   box-sizing: border-box;
   background-image: url("../../../img/background_usefulInfo_mob.png");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: -83px -52px;
+  background-position: -354px 0px;
+
+  @media screen and (min-width: 660px) {
+    background-position: -240px 0px;
+  }
+
   @media screen and (min-width: 768px) {
     background-image: url("../../../img/background_usefulInfo_tab.png");
     background-position: 0px -73px;
@@ -34,7 +42,7 @@
 
 .usefulInfo-sources {
   margin-bottom: 27px;
-  width: 207px;
+  width: 150px;
   hr {
     width: 150px;
   }
@@ -61,6 +69,7 @@
 
 .sources-list {
   margin-top: 10px;
+  list-style-type: decimal;
   list-style-position: inside;
   :nth-child(1) {
     a {

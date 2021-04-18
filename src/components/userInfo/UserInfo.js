@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./UserInfo.module.css";
+import styles from "./UserInfo.module.scss";
 
-const UserInfo = ({ userName = "Andriy" }) => {
-  const letter = userName.slice(0, 1).toUpperCase();
-  const shortName = `${letter}${userName.split(" ")[0].slice(1, 10)}`;
+const UserInfo = ({ email }) => {
+  const letter = email.slice(0, 1).toUpperCase();
+  const shortName = `${letter}${email.split(".")[0].slice(1, 10)}`;
 
   return (
     <div className={styles.container}>

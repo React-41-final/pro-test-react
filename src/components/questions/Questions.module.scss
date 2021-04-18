@@ -1,0 +1,119 @@
+@import "../../fonts//fonts.scss";
+
+.question {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  // background-color: #e5e5e5;
+  padding: 20px 0px;
+}
+
+.wrap {
+  width: 280px;
+  min-height: 350px;
+  background-color: #fff;
+  box-shadow: 0 0 10px #d3d3d3;
+}
+
+.answersNumber {
+  text-align: center;
+  font-family: "Montserrat-500";
+  font-size: 10px;
+  line-height: 17px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding-top: 40px;
+}
+
+.answersNumberFirst {
+  color: #ff6b09;
+  font-weight: bold;
+}
+
+.answersList {
+  display: flex;
+  flex-direction: column;
+}
+
+.questionTitle {
+  font-family: "Montserrat-500";
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  padding: 20px 20px 0px 20px;
+}
+
+.questionTitle::after {
+  content: "";
+  display: block;
+  margin: 15px auto;
+  width: 130px;
+  height: 2px;
+  opacity: 0.15;
+  background-color: #00122f;
+}
+
+.answersItem {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding-left: 25px;
+  user-select: none;
+  font-family: "Montserrat-500";
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.02em;
+  padding-bottom: 15px;
+}
+
+.textInput {
+  padding-left: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .wrap {
+    width: 652px;
+    min-height: 460px;
+  }
+
+  .question {
+    padding-bottom: 55px;
+  }
+
+  .answersNumber {
+    font-size: 14px;
+  }
+
+  .answersList {
+    padding: auto 65px;
+  }
+
+  .answersItem {
+    font-size: 16px;
+    line-height: 20px;
+    padding-left: 50px;
+  }
+
+  .questionTitle {
+    font-size: 22px;
+    line-height: 30px;
+    padding: 20px 85px;
+  }
+
+  .questionTitle::after {
+    margin: 30px auto;
+    width: 320px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .wrap {
+    width: 820px;
+  }
+
+  .answersItem {
+    padding-left: 80px;
+  }
+}
