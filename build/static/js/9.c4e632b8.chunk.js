@@ -1,2 +1,0 @@
-(this["webpackJsonppro-test-react"]=this["webpackJsonppro-test-react"]||[]).push([[9],{144:function(t,e,s){"use strict";s.r(e);s(0);var c=s(1),n=function(){return Object(c.jsx)("h3",{children:"Questions"})};e.default=function(){return Object(c.jsxs)("div",{children:[Object(c.jsx)("h2",{children:"Test"}),Object(c.jsx)(n,{})]})}}}]);
-//# sourceMappingURL=9.c4e632b8.chunk.js.map
