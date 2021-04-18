@@ -57,6 +57,7 @@ class Test extends Component {
             question={testData[idx].question}
             questionId={testData[idx].questionId}
             answers={testData[idx].answers}
+            currentNumber={idx + 1}
           />
         )}
         <section className={styles["button-section"]}>
