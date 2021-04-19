@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <div className={styles.footer}>
       <div className={styles.info}>
-        <span className={styles.infoUnit}>&copy; 2020</span>
+        <span className={styles.infoUnit}>&copy; 2021</span>
         <span className={styles.infoUnit}>All Rights Reserved</span>
         <span className={styles.infoUnit}>
           Developed with{" "}
