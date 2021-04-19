@@ -1,6 +1,5 @@
 .container {
   width: 280px;
-  //   height: 460px;
   margin: 0 auto;
   background-color: white;
   &:hover {
@@ -21,7 +20,10 @@
 }
 
 .box {
-  padding: 20px 20px 22px;
+  height: 200px;
+  padding: 20px 20px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 5fr 1fr;
 }
 
 .name {
