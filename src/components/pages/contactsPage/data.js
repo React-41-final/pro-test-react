@@ -19,7 +19,7 @@ const contacts = [
     name: "Alex Kozlov",
     photo: AlexKozzlov,
     position: "Front-End Developer",
-    tasks: `My role on this project is Team Lead. In addition to coordinating the team's work, my tasks included: routing, working with the API, the "Contacts and Materials" tab.`,
+    tasks: `As Team Lead I coordinated work of my team, set tasks, provided necessary advice. My personal tasks were routing, work with the API, "Contacts and Materials" tabs`,
     email: "alexandr.kozlov1120@gmail.com",
     linkedin: "https://www.linkedin.com/in/alexkozzlov/",
     facebook: "https://www.facebook.com/profile.php?id=100022988104383",
