@@ -27,6 +27,15 @@
   padding: 18px 14px;
   background-color: #ff6b09;
   border: none;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.finish-button:hover {
+  opacity: 0.9;
+  box-shadow: 2px 3px 4px 2px #696969;
+  background-color: #000000;
+  transform: rotateY(10deg);
 }
 
 .switch-button {
@@ -37,6 +46,22 @@
   align-items: center;
   background-color: #ff6b09;
   border: none;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.switch-button:hover {
+  opacity: 0.9;
+  box-shadow: 2px 3px 4px 2px #696969;
+}
+
+.switch-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.switch-button:disabled:hover {
+  box-shadow: none;
 }
 
 .switch-button ~ .switch-button {

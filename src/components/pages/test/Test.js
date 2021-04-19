@@ -13,6 +13,14 @@ class Test extends Component {
     questionNumber: 0,
   };
 
+  componentDidMount() {
+    console.log(this.props.testData);
+
+    if (!this.props.testData.length) {
+      this.props.history.push("/");
+    }
+  }
+
   handleFinishButtonClick = () => {
     this.props.history.push("/results");
   };
