@@ -37,7 +37,6 @@ const logIn = (credentials) => async (dispatch) => {
   dispatch(loginRequest());
   try {
     const user = await postSignInUser(credentials);
-    console.log("user: ", user);
 
     dispatch(loginSuccess(user));
   } catch (error) {

@@ -27,7 +27,8 @@ const contacts = [
     name: "Myronovych Oleksandr",
     photo: MyronovychOleksandr,
     position: "Front-End Developer",
-    tasks: "Сreated the authorization page and ContactCard.",
+    tasks:
+      "I've created the AuthPage, AuthForm and ContactCard. Also, I've developed functionality for Sign up/Sign in.",
     email: "myronovycholeksandr2311@gmail.com",
     linkedin: "https://www.linkedin.com/in/oleksandr-myronovych-b51a0b20b/",
     facebook: "https://www.facebook.com/profile.php?id=100023580738335",
