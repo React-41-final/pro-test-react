@@ -1,5 +1,5 @@
 import IvanIlch from "../../../img/ourTeam/IvanIlch.jpg";
-import AlexKozzlov from "../../../img/ourTeam/AlexKozzlov16.JPG";
+import AlexKozzlov from "../../../img/ourTeam/AlexKozzlov.JPG";
 import MyronovychOleksandr from "../../../img/ourTeam/Myronovych_Oleksandr.png";
 import AlexSyzov from "../../../img/ourTeam/AlexSyzov.jpg";
 import Maryan from "../../../img/ourTeam/Maryan.jpg";
@@ -19,7 +19,7 @@ const contacts = [
     name: "Alex Kozlov",
     photo: AlexKozzlov,
     position: "Front-End Developer",
-    tasks: `As Team Lead I coordinated work of my team, set tasks, provided necessary advice. My personal tasks were routing, work with the API, "Contacts and Materials" tabs.`,
+    tasks: `As a Team Lead I coordinated work of my team, set tasks, provided necessary advice. My personal tasks included routing, work with the API, "Contacts and Materials" tabs.`,
     email: "alexandr.kozlov1120@gmail.com",
     linkedin: "https://www.linkedin.com/in/alexkozzlov/",
     facebook: "https://www.facebook.com/profile.php?id=100022988104383",
