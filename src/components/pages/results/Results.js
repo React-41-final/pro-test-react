@@ -8,16 +8,16 @@ import catImages from "../../../img/catResultPage.png";
 import { resultsOperation } from "../../../redux/operations/resultsOperations";
 
 import styles from "./Results.module.scss";
+import Loader from "../../loader/Loader";
 
 class Results extends Component {
   state = {};
 
   componentDidMount() {
-    if (this.props.tests.length === 12) {
-      this.props.resultsOperation(
-        this.props.tests,
-        "Переменная что отвечает за тим запроса"
-      );
+    const { testAnswers, typeOfTests, resultsOperation } = this.props;
+
+    if (testAnswers && testAnswers.answers.length === 12) {
+      resultsOperation(testAnswers, typeOfTests);
     }
   }
 
@@ -30,21 +30,27 @@ class Results extends Component {
   }
 
   render() {
-    return !this.state.results ? (
+    const {testAnswers, results} = this.props;
+
+    return testAnswers === null || testAnswers.answers.length < 12 ? (
       <Redirect to={routes.mainPage} />
+    ) : results.answers ? (
+      <Loader />
     ) : (
       <div className={styles.results}>
         <h2 className={styles.resultTitle}>Results</h2>
         <p className={styles.resultName}>
-          [ Testing theory_] ORR [QA technical training]
+          {this.props.typeOfTests === "technical"
+            ? `[ Testing technical_ ]`
+            : `[ Testing theory_ ]`}
         </p>
-        <Diagram />
+        <Diagram percent={results.result} />
         <img className={styles.catImages} src={catImages} alt="cat"></img>
-        <p className={styles.mainMessage}>{this.state.results.mainMessage}</p>
+        <p className={styles.mainMessage}>{results.mainMessage}</p>
         <p className={styles.secondaryMessage}>
-          {this.state.results.secondaryMessage}
+          {results.secondaryMessage}
         </p>
-        <NavLink to={routes.mainPage} className={styles.buttonText}>
+        <NavLink to={routes.test} className={styles.buttonText}>
           <button className={styles.button} type="button">
             Try again
           </button>
@@ -55,9 +61,9 @@ class Results extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  tests: state.tests.test, // Масив ответов из сторе
+  testAnswers: state.tests.answers, // Масив ответов из сторе
   results: state.resultsOfTest.results,
-  // typeOfTests: state(переменная что за это отвечает),//для определения какой запрос делать
+  typeOfTests: state.tests.type, //для определения какой запрос делать
 });
 
 const mapDispatchToProps = {

@@ -1,69 +1,78 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
+import { answersListOperation } from "../../redux/operations/testOperations";
 import styles from "./Questions.module.scss";
 
 class Questions extends Component {
   state = {
-    question:
-      "Item testing (or side testing) allows you to test individual work of source code units", //получаем из пропов, нужно удалить из локального state
-    questionId: 24, //получаем из пропов
-    answers: [
-      "Currency testing",
-      "Testing the web application",
-      "Functional testing",
-      "Interface testing",
-      "Gamma testing",
-      "I don't know",
-    ], //получаем из пропов, нужно удалить из локального state
-    selectedAnswer: null, //выбраный ответ
-    list: [],
+    selectedAnswer: null,
+    answers: [],
   };
 
+  componentDidUpdate(prevProps) {
+    this.props.answersListOperation({ answers: this.state.answers });
+
+    if (this.props.question !== prevProps.question) {
+      this.setState({ selectedAnswer: null });
+
+      this.state.answers.map((answ) => {
+        if (this.props.questionId === answ.questionId) {
+          this.setState({ selectedAnswer: answ.answer });
+        }
+      });
+    }
+  }
+
   addList = (questionId, value) => {
-    const answ = {
+    const currentAnswer = {
       questionId: questionId,
       answer: value,
     };
 
     this.setState((prevState) => ({
-      list: [
-        ...prevState.list.filter((item) => item.questionId !== questionId),
-        answ,
+      answers: [
+        ...prevState.answers.filter((item) => item.questionId !== questionId),
+        currentAnswer,
       ],
     }));
-  }; // вынести в Redux
+  };
 
   handleChange = ({ target }) => {
     const { name, value, type, checked } = target;
-    const { questionId } = this.state;
+    const { questionId } = this.props;
 
     this.setState({ [name]: type === "checkbox" ? checked : value });
 
     this.addList(questionId, value);
-  }; //для сохраниния выбраного варианта в локальный state
+  };
 
   render() {
-    const { question, answers, selectedAnswer } = this.state;
+    const { selectedAnswer } = this.state;
+    const { question, answers, currentNumber } = this.props;
 
     return (
       <div className={styles.question}>
         <div className={styles.wrap}>
           <p className={styles.answersNumber}>
-            Question <span className={styles.answersNumberFirst}>3</span> / 12
+            Question{" "}
+            <span className={styles.answersNumberFirst}>{currentNumber}</span> /
+            12
           </p>
           <section className={styles.answersList}>
             <h2 className={styles.questionTitle}>{question}?</h2>
             {answers.map((answer) => (
-              <label key={answer} className={styles.answersItem}>
+              <div key={answer} className={styles.formRadio}>
                 <input
+                  id={answer}
                   type="radio"
                   checked={selectedAnswer === answer}
                   name="selectedAnswer"
                   value={answer}
                   onChange={this.handleChange}
                 />
-                <span className={styles.textInput}>{answer}</span>
-              </label>
+                <label htmlFor={answer}>{answer}</label>
+              </div>
             ))}
           </section>
         </div>
@@ -72,4 +81,8 @@ class Questions extends Component {
   }
 }
 
-export default Questions;
+const mapDispatchToProps = {
+  answersListOperation: answersListOperation,
+};
+
+export default connect(null, mapDispatchToProps)(Questions);

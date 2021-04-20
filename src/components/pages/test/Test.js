@@ -49,7 +49,7 @@ class Test extends Component {
             className={styles["finish-button"]}
             onClick={this.handleFinishButtonClick}
           >
-            Finish test
+            {!!this.props.testType ? "Finish test" : "Select question type"}
           </button>
         </section>
         {testData[idx] && (
