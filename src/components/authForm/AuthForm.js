@@ -14,6 +14,7 @@ class AuthForm extends Component {
   };
 
   componentWillUnmount() {
+    clearTimeout(this.timeoutId);
     this.setState({ email: "", password: "", isModal: false });
   }
 
@@ -44,7 +45,7 @@ class AuthForm extends Component {
 
     if (!!this.props.error) {
       this.setState({ isModal: true });
-      setTimeout(this.onToggleModal, 3000);
+      this.timeoutId = setTimeout(this.onToggleModal, 3000);
     }
   };
 

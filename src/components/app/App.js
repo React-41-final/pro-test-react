@@ -65,6 +65,7 @@ function App() {
                     import("../pages/UsefulInfo/UsefulInfo")
                   )}
                 />
+                <Redirect to="/" />
               </Switch>
             ) : (
               <Switch>
