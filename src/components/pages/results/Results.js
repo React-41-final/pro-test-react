@@ -50,7 +50,7 @@ class Results extends Component {
         <p className={styles.secondaryMessage}>
           {results.secondaryMessage}
         </p>
-        <NavLink to={routes.mainPage} className={styles.buttonText}>
+        <NavLink to={routes.test} className={styles.buttonText}>
           <button className={styles.button} type="button">
             Try again
           </button>

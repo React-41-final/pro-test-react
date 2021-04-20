@@ -10,8 +10,12 @@ class Questions extends Component {
     answers: [],
   };
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.props.answersListOperation({answers: this.state.answers});
+
+    if(this.props.question !== prevProps.question) {
+      this.setState({selectedAnswer: null})
+    }
   }
 
   addList = (questionId, value) => {
