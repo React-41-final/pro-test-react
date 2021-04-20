@@ -41,7 +41,7 @@ const contacts = [
     tasks:
       "I've been given the honor to create the eye-catching main page of this whole site as well as a little bit of test logic. But of course I haven't reached my full potential by doing this.",
     email: "sashasyzov@gmail.com",
-    linkedin: "https://www.linkedin.com/in/alexkozzlov/",
+    linkedin: "https://www.linkedin.com/in/alex-syz%C3%B3v-93b442210/",
     facebook: "https://www.facebook.com/profile.php?id=100021878402201",
   },
   {
