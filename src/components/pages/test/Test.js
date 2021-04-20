@@ -13,14 +13,6 @@ class Test extends Component {
     questionNumber: 0,
   };
 
-  componentDidMount() {
-    console.log(this.props.testData);
-
-    if (!this.props.testData.length) {
-      this.props.history.push("/");
-    }
-  }
-
   handleFinishButtonClick = () => {
     this.props.history.push("/results");
   };
@@ -57,7 +49,7 @@ class Test extends Component {
             className={styles["finish-button"]}
             onClick={this.handleFinishButtonClick}
           >
-            Finish test
+            {!!this.props.testType ? "Finish test" : "Select question type"}
           </button>
         </section>
         {testData[idx] && (

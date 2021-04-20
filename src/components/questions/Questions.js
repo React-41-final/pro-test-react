@@ -10,8 +10,18 @@ class Questions extends Component {
     answers: [],
   };
 
-  componentDidUpdate() {
-    this.props.answersListOperation({answers: this.state.answers});
+  componentDidUpdate(prevProps) {
+    this.props.answersListOperation({ answers: this.state.answers });
+
+    if (this.props.question !== prevProps.question) {
+      this.setState({ selectedAnswer: null });
+
+      this.state.answers.map((answ) => {
+        if (this.props.questionId === answ.questionId) {
+          this.setState({ selectedAnswer: answ.answer });
+        }
+      });
+    }
   }
 
   addList = (questionId, value) => {
@@ -52,7 +62,6 @@ class Questions extends Component {
           <section className={styles.answersList}>
             <h2 className={styles.questionTitle}>{question}?</h2>
             {answers.map((answer) => (
-
               <div key={answer} className={styles.formRadio}>
                 <input
                   id={answer}
