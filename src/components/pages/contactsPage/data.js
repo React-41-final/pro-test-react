@@ -1,5 +1,5 @@
 import IvanIlch from "../../../img/ourTeam/IvanIlch.jpg";
-import AlexKozzlov from "../../../img/ourTeam/AlexKozzlov.JPG";
+import AlexKozzlov from "../../../img/ourTeam/AlexKozzlov.jpg";
 import MyronovychOleksandr from "../../../img/ourTeam/Myronovych_Oleksandr.png";
 import AlexSyzov from "../../../img/ourTeam/AlexSyzov.jpg";
 import Maryan from "../../../img/ourTeam/Maryan.jpg";
