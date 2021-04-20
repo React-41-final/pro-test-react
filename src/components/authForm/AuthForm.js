@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 import { register, logIn } from "../../redux/operations/authOperations";
-import s from "./AuthForm.module.scss";
+import { getAuthError } from "../../redux/selectors/authSelector";
 import ModalErrorMessage from "./modalErrorMessage/ModalErrorMessage";
+import s from "./AuthForm.module.scss";
 import styles from "./modalAnimation.module.scss";
 
 class AuthForm extends Component {
@@ -111,7 +112,7 @@ class AuthForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  error: state.auth.error,
+  error: getAuthError(state),
 });
 
 const mapDispatchToProps = {

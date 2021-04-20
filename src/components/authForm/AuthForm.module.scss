@@ -38,6 +38,7 @@
     align-items: center;
     padding-left: 37px;
     padding-right: 37px;
+    cursor: pointer;
 }
 
 .googleButton::before {
@@ -80,6 +81,7 @@
     text-transform: uppercase;
     background: #fff;
     border: 1px solid #CED2D1;
+    cursor: pointer;
 }
 
 .button:not(:last-child) {
@@ -91,6 +93,7 @@
     color: #fff;
     background: #FF6B09;
     border: 1px solid #CED2D1;
+    transition: all .3s linear;
 }
 
 @media (min-width: 768px) {
