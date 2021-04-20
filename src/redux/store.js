@@ -1,8 +1,8 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
-import storage from 'redux-persist/lib/storage';
-import persistReducer from 'redux-persist/es/persistReducer';
-import persistStore from 'redux-persist/es/persistStore';
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { combineReducers } from "redux";
+import storage from "redux-persist/lib/storage";
+import persistReducer from "redux-persist/es/persistReducer";
+import persistStore from "redux-persist/es/persistStore";
 import {
   FLUSH,
   PAUSE,
@@ -10,25 +10,21 @@ import {
   PURGE,
   REGISTER,
   REHYDRATE,
-} from 'redux-persist/es/constants';
+} from "redux-persist/es/constants";
 
-import { authReducer } from './reducers/authReducer';
-import { contactsReducer } from './reducers/contactsReducer';
-import { resultsReducer } from './reducers/resultsReducer';
-import { testReducer } from './reducers/testReducer';
+import { authReducer } from "./reducers/authReducer";
+import { resultsReducer } from "./reducers/resultsReducer";
+import { testReducer } from "./reducers/testReducer";
 
 const authPersistConfig = {
-  key: 'auth',
+  key: "auth",
   storage,
-  // whitelist: ["token"],
 };
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
-  contacts: contactsReducer,
   resultsOfTest: resultsReducer,
   tests: testReducer,
-  // loading,
 });
 
 const store = configureStore({
