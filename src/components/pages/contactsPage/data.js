@@ -58,7 +58,8 @@ const contacts = [
     name: "Valerii Troian",
     photo: Valerockk,
     position: "Front-End Developer",
-    tasks: "Created results page and question.",
+    tasks:
+      "I’ve worked on the Results, Diagram and Questions components on this project. Developed functionality for testing, receiving and displaying test results.",
     email: "trojan.valerii@gmail.com",
     linkedin:
       "https://www.linkedin.com/in/%D1%82%D1%80%D0%BE%D1%8F%D0%BD-%D0%B2%D0%B0%D0%BB%D0%B5%D1%80%D0%B8%D0%B9-b5b52915a/",
