@@ -5,7 +5,9 @@ import { NavLink, Redirect } from "react-router-dom";
 import routes from "../../../routers/routers";
 import Diagram from "../../diagram/Diagram";
 import catImages from "../../../img/catResultPage.png";
+import { getTestType } from "../../../redux/selectors/testSelector";
 import { resultsOperation } from "../../../redux/operations/resultsOperations";
+import { getTestAnswers, getResultsOfTest } from "../../../redux/selectors/resultsSelector"
 
 import styles from "./Results.module.scss";
 import Loader from "../../loader/Loader";
@@ -30,7 +32,7 @@ class Results extends Component {
   }
 
   render() {
-    const {testAnswers, results} = this.props;
+    const { testAnswers, results } = this.props;
 
     return testAnswers === null || testAnswers.answers.length < 12 ? (
       <Redirect to={routes.mainPage} />
@@ -47,9 +49,7 @@ class Results extends Component {
         <Diagram percent={results.result} />
         <img className={styles.catImages} src={catImages} alt="cat"></img>
         <p className={styles.mainMessage}>{results.mainMessage}</p>
-        <p className={styles.secondaryMessage}>
-          {results.secondaryMessage}
-        </p>
+        <p className={styles.secondaryMessage}>{results.secondaryMessage}</p>
         <NavLink to={routes.test} className={styles.buttonText}>
           <button className={styles.button} type="button">
             Try again
@@ -61,9 +61,9 @@ class Results extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  testAnswers: state.tests.answers, // Масив ответов из сторе
-  results: state.resultsOfTest.results,
-  typeOfTests: state.tests.type, //для определения какой запрос делать
+  testAnswers: getTestAnswers(state), // Масив ответов из сторе
+  results: getResultsOfTest(state),
+  typeOfTests: getTestType(state), //для определения какой запрос делать
 });
 
 const mapDispatchToProps = {
