@@ -30,7 +30,7 @@ class Results extends Component {
   }
 
   render() {
-    const {testAnswers, results} = this.props;
+    const { testAnswers, results } = this.props;
 
     return testAnswers === null || testAnswers.answers.length < 12 ? (
       <Redirect to={routes.mainPage} />
@@ -47,9 +47,7 @@ class Results extends Component {
         <Diagram percent={results.result} />
         <img className={styles.catImages} src={catImages} alt="cat"></img>
         <p className={styles.mainMessage}>{results.mainMessage}</p>
-        <p className={styles.secondaryMessage}>
-          {results.secondaryMessage}
-        </p>
+        <p className={styles.secondaryMessage}>{results.secondaryMessage}</p>
         <NavLink to={routes.test} className={styles.buttonText}>
           <button className={styles.button} type="button">
             Try again

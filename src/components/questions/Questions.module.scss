@@ -34,6 +34,7 @@
 .answersList {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .questionTitle {
@@ -107,6 +108,7 @@
   background: #fff;
   top: 5px;
   left: 5px;
+  transition: 0.1s;
 }
 
 .formRadio input[type="radio"]:checked + label:after {
