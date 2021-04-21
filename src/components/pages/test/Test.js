@@ -13,6 +13,10 @@ class Test extends Component {
     questionNumber: 0,
   };
 
+  componentDidMount() {
+    localStorage.setItem("answers", JSON.stringify([]));
+  }
+
   handleFinishButtonClick = () => {
     this.props.history.push("/results");
   };
