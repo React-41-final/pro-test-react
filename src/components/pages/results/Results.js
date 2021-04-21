@@ -5,7 +5,9 @@ import { NavLink, Redirect } from "react-router-dom";
 import routes from "../../../routers/routers";
 import Diagram from "../../diagram/Diagram";
 import catImages from "../../../img/catResultPage.png";
+import { getTestType } from "../../../redux/selectors/testSelector";
 import { resultsOperation } from "../../../redux/operations/resultsOperations";
+import { getTestAnswers, getResultsOfTest } from "../../../redux/selectors/resultsSelector"
 
 import styles from "./Results.module.scss";
 import Loader from "../../loader/Loader";
@@ -59,9 +61,9 @@ class Results extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  testAnswers: state.tests.answers, // Масив ответов из сторе
-  results: state.resultsOfTest.results,
-  typeOfTests: state.tests.type, //для определения какой запрос делать
+  testAnswers: getTestAnswers(state), // Масив ответов из сторе
+  results: getResultsOfTest(state),
+  typeOfTests: getTestType(state), //для определения какой запрос делать
 });
 
 const mapDispatchToProps = {
