@@ -38,6 +38,17 @@
   transform: rotateY(10deg);
 }
 
+.finish-button:disabled {
+  opacity: 0.4;
+}
+
+.finish-button:disabled:hover {
+  box-shadow: none;
+  background-color: #ff6b09;
+  transform: none;
+  cursor: default;
+}
+
 .switch-button {
   width: 55px;
   padding: 9px 0;

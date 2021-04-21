@@ -21,10 +21,11 @@
   line-height: 16px;
   color: #000;
   position: relative;
+  transition: color ease-in-out 0.15s;
 }
 .link:hover {
   color: #ff6b09;
-  transition: color ease-in-out 0.1s;
+  transition: color ease-in-out 0.15s;
 }
 
 .activeLink::after {

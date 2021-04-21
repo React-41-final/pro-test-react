@@ -61,8 +61,6 @@ const getUserGoogle = (tokenData) => async (dispatch) => {
     let data = {};
     const user = await getUser(tokenData.accessToken);
     data = { userData: user, ...tokenData };
-    // data.userData = user;
-    // data.tokens = tokenData;
     dispatch(getUserSuccess(data));
   } catch (error) {
     dispatch(getUserError(error));

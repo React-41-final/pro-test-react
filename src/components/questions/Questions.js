@@ -15,12 +15,14 @@ class Questions extends Component {
 
     if (this.props.question !== prevProps.question) {
       this.setState({ selectedAnswer: null });
-
+      // eslint-disable-next-line
       this.state.answers.map((answ) => {
         if (this.props.questionId === answ.questionId) {
           this.setState({ selectedAnswer: answ.answer });
         }
       });
+
+      localStorage.setItem("answers", JSON.stringify(this.state.answers));
     }
   }
 
@@ -55,7 +57,6 @@ class Questions extends Component {
       <div className={styles.question}>
         <div className={styles.wrap}>
           <p className={styles.answersNumber}>
-            Question{" "}
             <span className={styles.answersNumberFirst}>{currentNumber}</span> /
             12
           </p>

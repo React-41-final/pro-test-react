@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 import queryString from "query-string";
 import { getUserGoogle } from "../../../redux/operations/authOperations";
 import sprite from "../../../sprites/sprite.svg";
-import styles from "./MainPage.module.css";
+import styles from "./MainPage.module.scss";
 import { test } from "../../../redux/operations/testOperations";
 
 class MainPage extends Component {
   componentDidMount() {
     const { location } = this.props;
     const params = queryString.parse(location.search);
-    console.log("params: ", params);
     const keysArray = Object.keys(params);
 
     if (keysArray.length > 0) {
