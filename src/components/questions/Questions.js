@@ -15,7 +15,7 @@ class Questions extends Component {
 
     if (this.props.question !== prevProps.question) {
       this.setState({ selectedAnswer: null });
-
+      // eslint-disable-next-line
       this.state.answers.map((answ) => {
         if (this.props.questionId === answ.questionId) {
           this.setState({ selectedAnswer: answ.answer });
