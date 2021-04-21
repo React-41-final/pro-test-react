@@ -13,6 +13,10 @@ class Test extends Component {
     questionNumber: 0,
   };
 
+  componentDidMount() {
+    localStorage.setItem("answers", JSON.stringify([]));
+  }
+
   handleFinishButtonClick = () => {
     this.props.history.push("/results");
   };
@@ -33,9 +37,6 @@ class Test extends Component {
     const { testData } = this.props;
     const { questionNumber: idx } = this.state;
 
-    console.log(testData);
-    console.log(this.state.questionNumber);
-
     return (
       <div className={styles.container}>
         <section className={styles["button-section"]}>
@@ -48,6 +49,11 @@ class Test extends Component {
           <button
             className={styles["finish-button"]}
             onClick={this.handleFinishButtonClick}
+            disabled={
+              !JSON.parse(localStorage.getItem("answers")) ||
+              JSON.parse(localStorage.getItem("answers")).length <
+                testData.length - 2
+            }
           >
             {!!this.props.testType ? "Finish test" : "Select question type"}
           </button>

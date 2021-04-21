@@ -21,6 +21,8 @@ class Questions extends Component {
           this.setState({ selectedAnswer: answ.answer });
         }
       });
+
+      localStorage.setItem("answers", JSON.stringify(this.state.answers));
     }
   }
 
@@ -55,7 +57,6 @@ class Questions extends Component {
       <div className={styles.question}>
         <div className={styles.wrap}>
           <p className={styles.answersNumber}>
-            Question{" "}
             <span className={styles.answersNumberFirst}>{currentNumber}</span> /
             12
           </p>
