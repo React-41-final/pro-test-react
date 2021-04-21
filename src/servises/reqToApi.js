@@ -44,9 +44,6 @@ const postLogoutUser = async () => {
 };
 
 const postRefreshUser = async (refreshToken, sid) => {
-  console.log("refreshToken: ", refreshToken);
-  console.log("sid: ", sid);
-
   token.set(refreshToken);
   try {
     const user = await axios.post("auth/refresh", { sid });

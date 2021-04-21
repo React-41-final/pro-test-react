@@ -6,7 +6,6 @@ import {
   refreshToken,
 } from "../../redux/operations/authOperations";
 import routers from "../../routers/routers";
-import "./App.scss";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../loader/Loader";
 

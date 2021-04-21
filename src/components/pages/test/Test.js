@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Questions from "../../questions/Questions";
 import sprite from "../../../sprites/sprite.svg";
-import styles from "./Test.module.css";
+import styles from "./Test.module.scss";
 import {
   getTestData,
   getTestType,
